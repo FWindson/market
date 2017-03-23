@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+  "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\asus\.m2\repository\org\postgresql\postgresql\42.0.0\postgresql-42.0.0.jar" />
+	<context id="market" defaultModelType="hierarchical" targetRuntime="MyBatis3Simple"><property name="autoDelimitKeywords" value="false" />
+		<property name="javaFileEncoding" value="UTF-8" />
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://127.0.0.1:5432/market?charSet=utf-8"
+			userId="postgres" password="lol123456">
+		</jdbcConnection>
+		<javaTypeResolver
+			type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="com.market.domain" targetProject="src\main\java">
+			<property name="constructorBased" value="false" />
+			<property name="enableSubPackages" value="false" />
+			<property name="immutable" value="false" />
+			<property name="trimStrings" value="false" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.market.dao" targetProject="src\main\resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.market.dao" type="XMLMAPPER" targetProject="src\main\java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table tableName="administrator" domainObjectName="Administrator"></table>
+		<table tableName="commision_configuration" domainObjectName="CommisionConfiguration"></table>
+		<table tableName="commision_record" domainObjectName="CommisionRecord"></table>
+		<table tableName="commision_withdraw_apply" domainObjectName="CommisionWithdrawApply"></table>
+		<table tableName="company" domainObjectName="Company"></table>
+		<table tableName="consumption_record" domainObjectName="ConsumptionRecord"></table>
+		<table tableName="customer" domainObjectName="Customer"></table>
+		<table tableName="discount_code_configuration" domainObjectName="DiscountCodeConfiguration"></table>
+		<table tableName="discount_code_configuration_detail" domainObjectName="DiscountCodeConfiguration"></table>
+		<table tableName="goods" domainObjectName="Goods"></table>
+		<table tableName="goods_image_relation" domainObjectName="GoodsImageRelation"></table>
+		<table tableName="goods_product_relation" domainObjectName="GoodsProductRelation"></table>
+		<table tableName="image" domainObjectName="Image"></table>
+		<table tableName="order" domainObjectName="Order"></table>
+		<table tableName="order_detail" domainObjectName="OrderDetail"></table>
+		<table tableName="order_influence" domainObjectName="OrderInfluence"></table>
+		<table tableName="pay_record" domainObjectName="PayRecord"></table>
+		<table tableName="product" domainObjectName="Product"></table>
+		<table tableName="sales" domainObjectName="Sales"></table>
+		<table tableName="sales_apply" domainObjectName="SalesApply"></table>
+		<table tableName="shopping_ticket" domainObjectName="ShoppingTicket"></table>
+		<table tableName="user" domainObjectName="User"></table>
+	</context>
+
+</generatorConfiguration>
