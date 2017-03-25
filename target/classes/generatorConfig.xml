@@ -15,7 +15,7 @@
 		<property name="beginningDelimiter" value="`" />
 		<property name="endingDelimiter" value="`" />
 		<jdbcConnection driverClass="org.postgresql.Driver"
-			connectionURL="jdbc:postgresql://127.0.0.1:5432/market?charSet=utf-8"
+			connectionURL="jdbc:postgresql://127.0.0.1:5432/LutuMarket?charSet=utf-8"
 			userId="postgres" password="lol123456">
 		</jdbcConnection>
 		<javaTypeResolver
@@ -28,35 +28,113 @@
 			<property name="immutable" value="false" />
 			<property name="trimStrings" value="false" />
 		</javaModelGenerator>
-		<sqlMapGenerator targetPackage="com.market.dao" targetProject="src\main\resources">
+		<sqlMapGenerator targetPackage="com.market.mapper" targetProject="src\main\java">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<javaClientGenerator targetPackage="com.market.dao" type="XMLMAPPER" targetProject="src\main\java">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
-		<table tableName="administrator" domainObjectName="Administrator"></table>
-		<table tableName="commision_configuration" domainObjectName="CommisionConfiguration"></table>
-		<table tableName="commision_record" domainObjectName="CommisionRecord"></table>
-		<table tableName="commision_withdraw_apply" domainObjectName="CommisionWithdrawApply"></table>
-		<table tableName="company" domainObjectName="Company"></table>
-		<table tableName="consumption_record" domainObjectName="ConsumptionRecord"></table>
-		<table tableName="customer" domainObjectName="Customer"></table>
-		<table tableName="discount_code_configuration" domainObjectName="DiscountCodeConfiguration"></table>
-		<table tableName="discount_code_configuration_detail" domainObjectName="DiscountCodeConfiguration"></table>
-		<table tableName="goods" domainObjectName="Goods"></table>
-		<table tableName="goods_image_relation" domainObjectName="GoodsImageRelation"></table>
-		<table tableName="goods_product_relation" domainObjectName="GoodsProductRelation"></table>
-		<table tableName="image" domainObjectName="Image"></table>
-		<table tableName="order" domainObjectName="Order"></table>
-		<table tableName="order_detail" domainObjectName="OrderDetail"></table>
-		<table tableName="order_influence" domainObjectName="OrderInfluence"></table>
-		<table tableName="pay_record" domainObjectName="PayRecord"></table>
-		<table tableName="product" domainObjectName="Product"></table>
-		<table tableName="sales" domainObjectName="Sales"></table>
-		<table tableName="sales_apply" domainObjectName="SalesApply"></table>
-		<table tableName="shopping_ticket" domainObjectName="ShoppingTicket"></table>
-		<table tableName="user" domainObjectName="User"></table>
+		<table tableName="administrator" domainObjectName="Administrator">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+		</table>
+		<table tableName="commision_configuration" domainObjectName="CommisionConfiguration">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" /> 
+			<columnOverride column="target_id" jdbcType="VARCHAR" property="targetId" javaType="java.lang.String" />
+			<columnOverride column="target_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />
+			<columnOverride column="target_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />      
+		</table>
+		<table tableName="commision_record" domainObjectName="CommisionRecord">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+			<columnOverride column="applicant_id" jdbcType="VARCHAR" property="applicationId" javaType="java.lang.String" />  
+			<columnOverride column="order_detail_id" jdbcType="VARCHAR" property="orderDetailId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="commision_withdraw_apply" domainObjectName="CommisionWithdrawApply">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" /> 
+			<columnOverride column="applicant_id" jdbcType="VARCHAR" property="applicantId" javaType="java.lang.String" /> 
+		</table>
+		<table tableName="company" domainObjectName="Company">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+		</table>
+		<table tableName="consumption_record" domainObjectName="ConsumptionRecord">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="shopping_ticket_id" jdbcType="VARCHAR" property="shoppingTicketId" javaType="java.lang.String" />
+			<columnOverride column="handle_by" jdbcType="VARCHAR" property="handleBy" javaType="java.lang.String" /> 
+		</table>
+		<table tableName="customer" domainObjectName="Customer">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+			<columnOverride column="sales_id" jdbcType="VARCHAR" property="salesId" javaType="java.lang.String" />
+		</table>
+		<table tableName="discount_code_configuration" domainObjectName="DiscountCodeConfiguration">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="to_user" jdbcType="VARCHAR" property="toUser" javaType="java.lang.String" />  
+		</table>
+		<table tableName="discount_code_configuration_detail" domainObjectName="DiscountCodeConfigurationDetail">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+			<columnOverride column="discount_code_id" jdbcType="VARCHAR" property="discountCodeId" javaType="java.lang.String" />
+			<columnOverride column="goods_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />
+		</table>
+		<table tableName="goods" domainObjectName="Goods">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+		</table>
+		<table tableName="goods_image_relation" domainObjectName="GoodsImageRelation">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+			<columnOverride column="goods_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />
+			<columnOverride column="image_id" jdbcType="VARCHAR" property="imageId" javaType="java.lang.String" />
+		</table>
+		<table tableName="goods_product_relation" domainObjectName="GoodsProductRelation">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+ 			<columnOverride column="goods_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />
+ 			<columnOverride column="product_id" jdbcType="VARCHAR" property="productId" javaType="java.lang.String" />
+		</table>
+		<table tableName="image" domainObjectName="Image">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+		</table>
+		<table tableName="order" domainObjectName="Order">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+ 			<columnOverride column="customer_id" jdbcType="VARCHAR" property="customerId" javaType="java.lang.String" />
+		</table>
+		<table tableName="order_detail" domainObjectName="OrderDetail">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="order_id" jdbcType="VARCHAR" property="orderId" javaType="java.lang.String" />
+			<columnOverride column="goods_id" jdbcType="VARCHAR" property="goodsId" javaType="java.lang.String" />
+			<columnOverride column="image_id" jdbcType="VARCHAR" property="imageId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="order_influence" domainObjectName="OrderInfluence">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="order_id" jdbcType="VARCHAR" property="orderId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="pay_record" domainObjectName="PayRecord">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="order_id" jdbcType="VARCHAR" property="orderId" javaType="java.lang.String" />  
+		</table>	
+		<table tableName="product" domainObjectName="Product">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="category_id" jdbcType="VARCHAR" property="categoryId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="sales" domainObjectName="Sales">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="user_id" jdbcType="VARCHAR" property="userId" javaType="java.lang.String" />
+			<columnOverride column="company_id" jdbcType="VARCHAR" property="companyId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="sales_apply" domainObjectName="SalesApply">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="user_id" jdbcType="VARCHAR" property="userId" javaType="java.lang.String" />
+			<columnOverride column="company_id" jdbcType="VARCHAR" property="companyId" javaType="java.lang.String" />
+			<columnOverride column="handler_by" jdbcType="VARCHAR" property="handlerBy" javaType="java.lang.String" />  
+		</table>
+		<table tableName="shop_assistant" domainObjectName="shopAssistant">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="user_id" jdbcType="VARCHAR" property="userId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="shopping_ticket" domainObjectName="ShoppingTicket">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
+			<columnOverride column="order_detail_id" jdbcType="VARCHAR" property="orderDetailId" javaType="java.lang.String" />
+			<columnOverride column="product_id" jdbcType="VARCHAR" property="productId" javaType="java.lang.String" />  
+		</table>
+		<table tableName="user" domainObjectName="User">
+			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
+		</table>
 	</context>
 
 </generatorConfiguration>

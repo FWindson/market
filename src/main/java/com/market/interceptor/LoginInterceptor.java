@@ -1,4 +1,4 @@
-package com.market.inteceptor;
+package com.market.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,6 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.market.utils.LoggerUtil;
+import com.market.utils.SessionKeyUtil;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -18,12 +21,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("username");
+		String companyName = (String) session.getAttribute(SessionKeyUtil.LoginCompanyName);
+		LoggerUtil.getLogger(this).error("======== Session Name ======== ： " + companyName);
 
-		if (username != null) {
+		if (companyName != null) {
 			return true;
 		}
-		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/company/login_redirect?returnUrl=" + url).forward(request, response);
 
 		return false;
 	}

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.market.domain.Person;
-
 @Controller
 @RequestMapping(value = "/store")
 public class StoreController {

@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.market.dao.CompanyMapper;
+
 public class MyBatisUtil {
 
 	public final static String MYBATIS_CONFIG = "mybatis-config.xml";
@@ -30,6 +32,9 @@ public class MyBatisUtil {
 			try {
 				inputStream = Resources.getResourceAsStream(resource);
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+				System.out.println("生成工厂，添加映射接口");
+				// sqlSessionFactory.getConfiguration().addMapper(CompanyMapper.class);
+				System.out.println("生成工厂，添加映射接口成功");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
