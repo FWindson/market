@@ -20,14 +20,17 @@ public class CompanyService implements ICompanyService {
 	
 	@Override
 	public Company getCompany(String name, String password) {
-		// TODO Auto-generated method stub
 		return companyDao.selectCompany(name, password);
 	}
 
 	@Override
 	public List<Company> getAll() {
-		// TODO Auto-generated method stub
 		return companyDao.selectAll();
+	}
+
+	@Override
+	public Company getByPrimaryKey(String id) {
+		return companyDao.selectByPrimaryKey(id);
 	}
 
 }

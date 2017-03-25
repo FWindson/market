@@ -20,4 +20,10 @@ public interface ICompanyService {
 	 */
 	public List<Company> getAll();
 	
+	/**
+	 * 获取公司
+	 * @return 主键
+	 */
+	public Company getByPrimaryKey(String id);
+	
 }

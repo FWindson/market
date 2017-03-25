@@ -10,10 +10,10 @@ import com.market.domain.Company;
 import com.market.utils.MyBatisUtil;
 
 @Repository("companyDao")
-public class CompanyDao implements CompanyMapper {
+public class CompanyMapperProvider implements CompanyMapper {
 
 	@Override
-	public int deleteByPrimaryKey(Object id) {
+	public int deleteByPrimaryKey(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -25,15 +25,16 @@ public class CompanyDao implements CompanyMapper {
 	}
 
 	@Override
-	public Company selectByPrimaryKey(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Company selectByPrimaryKey(String id) {
+		SqlSession session = MyBatisUtil.getSession();
+		CompanyMapper companyMapper = session.getMapper(CompanyMapper.class);
+		return companyMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public List<Company> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = MyBatisUtil.getSession();
+		return session.selectList("com.market.dao.CompanyMapper.selectAll");
 	}
 
 	@Override
