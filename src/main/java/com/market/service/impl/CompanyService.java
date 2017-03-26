@@ -15,22 +15,21 @@ import com.market.service.ICompanyService;
 public class CompanyService implements ICompanyService {
 
 	@Autowired
-	@Qualifier("companyDao")
-	private CompanyMapper companyDao;
+	private CompanyMapper companyMapper;
 	
 	@Override
 	public Company getCompany(String name, String password) {
-		return companyDao.selectCompany(name, password);
+		return companyMapper.selectCompany(name, password);
 	}
 
 	@Override
 	public List<Company> getAll() {
-		return companyDao.selectAll();
+		return companyMapper.selectAll();
 	}
 
 	@Override
 	public Company getByPrimaryKey(String id) {
-		return companyDao.selectByPrimaryKey(id);
+		return companyMapper.selectByPrimaryKey(id);
 	}
 
 }
