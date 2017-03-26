@@ -124,7 +124,7 @@
 			<columnOverride column="company_id" jdbcType="VARCHAR" property="companyId" javaType="java.lang.String" />
 			<columnOverride column="handler_by" jdbcType="VARCHAR" property="handlerBy" javaType="java.lang.String" />  
 		</table>
-		<table tableName="shop_assistant" domainObjectName="shopAssistant">
+		<table tableName="shop_assistant" domainObjectName="ShopAssistant">
 			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />
 			<columnOverride column="user_id" jdbcType="VARCHAR" property="userId" javaType="java.lang.String" />  
 		</table>
