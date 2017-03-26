@@ -18,55 +18,55 @@
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
 		<li><a href="#">商品管理</a></li>
-		<li class="active">添加商品</li>
+		<li class="active">添加产品</li>
 	</ul>
 	<!-- END 当前路径 -->
 	<div class="col-md-8">
 		<div class="page-title">
-			<h2>添加商品</h2>
+			<h2>添加产品</h2>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" id="form-product">
 					<div class="form-group">
-						<h4 class="col-md-1">商品名</h4>
+						<h4 class="col-md-1 control-label">产品名</h4>
 						<div class="col-md-5">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="name">
 						</div>
 					</div>
 					<div class="form-group">
-						<h4 class="col-md-1">价格</h4>
+						<h4 class="col-md-1 control-label">价格</h4>
 						<div class="col-md-5">
-							<input type="number" class="form-control">
+							<input type="number" class="form-control" name="price">
 						</div>
 					</div>
 					<div class="form-group">
-						<h4 class="col-md-1">状态</h4>
+						<h4 class="col-md-1 control-label">属性</h4>
 						<div class="col-md-5">
-							<select class="form-control select">
-								<option>初始化</option>
-								<option>即将上市</option>
-								<option>上架</option>
-								<option>下架</option>
+							<select class="form-control select" name="nature">
+								<option>服务</option>
+								<option>实体</option>
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<h4 class="col-md-1 control-label">库存</h4>
+						<div class="col-md-5">
+							<input type="number" class="form-control" name="stock">
+						</div>
+						<p class="form-control-static">提示：不填代表库存无限</p>
+					</div>
 				</form>
 			</div>
-			<div class="panel-body">
-				<div class="col-md-6">
-					<h4>商品简介</h4>
-					<textarea class="summernote" id="textarea-intro"></textarea>
-				</div>
-				<div class="col-md-6">
-					<h4>商品详情</h4>
-					<textarea class="summernote" id="textarea-desc"></textarea>
-				</div>
+			<div class="panel-footer">
+				<button class="btn btn-primary btn-lg pull-right" id="btn-submit">
+					保存 <span class="fa fa-floppy-o fa-right"></span>
+				</button>
 			</div>
 		</div>
 	</div>
 
-	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>               --%>
+	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>  --%>
 
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
@@ -87,6 +87,11 @@
 
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/actions.js"></script>
+
+	<script type="text/javascript" src="<%=basePath%>jslib/jquery.serializejson/jquery.serializejson.min.js"></script>
+
+	<script type="text/javascript" src="<%=basePath%>scripts/global/config.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/admin/product_add.js"></script>
 
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/atlant/demo_dashboard.js"></script> --%>
 

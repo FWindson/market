@@ -52,4 +52,32 @@ public class AdminController {
 		model.addAttribute("adminName", "Windson");
 		return "admin/goods_edit";
 	}
+	
+	/**
+	 * 产品列表
+	 * @return
+	 */
+	@RequestMapping("/product_list")
+	public String productList() {
+		return "admin/product_list";
+	}
+	
+	/**
+	 * 添加产品
+	 * @return
+	 */
+	@RequestMapping("/product_add")
+	public String productAdd(){
+		return "admin/product_add";
+	}
+	
+	/**
+	 * 编辑产品
+	 * @return
+	 */
+	@RequestMapping("/product_edit")
+	public String productEdit(){
+		return "admin/product_edit";
+	}
+	
 }

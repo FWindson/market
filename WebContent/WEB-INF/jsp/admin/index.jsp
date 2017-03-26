@@ -49,6 +49,14 @@
                     </li>                    
                     <li class="xn-title">模块管理</li>
                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">产品管理</span></a>                        
+                        <ul>
+                        	<li><a href="<%=basePath%>admin/product_list" target="framex"><span class="fa fa-magic"></span>产品列表</a></li>
+                        	<li><a href="<%=basePath%>admin/product_add" target="framex"><span class="fa fa-magic"></span>新建产品</a></li>
+                        	<li><a href="<%=basePath%>admin/product_edit" target="framex"><span class="fa fa-magic"></span>编辑产品</a></li>
+                        </ul>
+                    </li>
+                    <li class="xn-openable">
                         <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">商品管理</span></a>                        
                         <ul>
                         	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>商品列表</a></li>

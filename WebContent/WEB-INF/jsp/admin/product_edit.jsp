@@ -18,18 +18,18 @@
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
 		<li><a href="#">商品管理</a></li>
-		<li class="active">添加商品</li>
+		<li class="active">添加产品</li>
 	</ul>
 	<!-- END 当前路径 -->
 	<div class="col-md-8">
 		<div class="page-title">
-			<h2>添加商品</h2>
+			<h2>添加产品</h2>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
-						<h4 class="col-md-1">商品名</h4>
+						<h4 class="col-md-1">产品名</h4>
 						<div class="col-md-5">
 							<input type="text" class="form-control">
 						</div>
@@ -41,25 +41,20 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<h4 class="col-md-1">状态</h4>
+						<h4 class="col-md-1">库存</h4>
 						<div class="col-md-5">
-							<select class="form-control select">
-								<option>初始化</option>
-								<option>即将上市</option>
-								<option>上架</option>
-								<option>下架</option>
-							</select>
+							<input type="number" class="form-control">
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="panel-body">
 				<div class="col-md-6">
-					<h4>商品简介</h4>
+					<h4>产品简介</h4>
 					<textarea class="summernote" id="textarea-intro"></textarea>
 				</div>
 				<div class="col-md-6">
-					<h4>商品详情</h4>
+					<h4>产品详情</h4>
 					<textarea class="summernote" id="textarea-desc"></textarea>
 				</div>
 			</div>
