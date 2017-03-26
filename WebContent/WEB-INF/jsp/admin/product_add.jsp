@@ -5,6 +5,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <title>后台管理</title>
@@ -44,8 +45,11 @@
 						<h4 class="col-md-1 control-label">属性</h4>
 						<div class="col-md-5">
 							<select class="form-control select" name="nature">
-								<option>服务</option>
-								<option>实体</option>
+								<!-- <option>服务</option>
+								<option>实体</option> -->
+								<c:forEach items="${productNature}" var="nature">
+									<option value="${nature.code}">${nature.label}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>
@@ -66,6 +70,33 @@
 		</div>
 	</div>
 
+	<!-- 提示框 -->
+	<div class="message-box message-box-success animated fadeIn" id="message-box-success">
+		<div class="mb-container">
+			<div class="mb-middle">
+				<div class="mb-title">
+					<span class="fa fa-check"></span> 添加产品成功
+				</div>
+				<div class="mb-footer">
+					<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="message-box message-box-danger animated fadeIn" id="message-box-danger">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
+                    <div class="mb-content" id="mb-content-danger">
+                        <p></p>
+                    </div>
+                    <div class="mb-footer">
+                        <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<!-- end s提示框 -->
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>  --%>
 
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery.min.js"></script>

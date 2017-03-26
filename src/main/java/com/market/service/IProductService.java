@@ -4,6 +4,6 @@ import com.market.domain.Product;
 
 public interface IProductService {
 
-	Product addProduct(String name,String nature,double price,short stock);
+	Product addProduct(String name,Short nature,double price,int stock,String admin);
 	
 }

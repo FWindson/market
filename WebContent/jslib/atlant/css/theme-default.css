@@ -2426,7 +2426,7 @@ input[type=checkbox] {
 }
 .form-control {
   height: 30px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -5253,6 +5253,7 @@ td.dataTables_empty {
 }
 .message-box .mb-container .mb-middle .mb-content p {
   margin-bottom: 0px;
+  font-size:14px;
 }
 .message-box .mb-container .mb-middle .mb-footer {
   width: 100%;
@@ -6823,6 +6824,7 @@ div.datepicker thead tr:first-child th:hover {
   overflow: hidden;
   width: 100%;
   text-align: left;
+  font-size:14px;
 }
 .bootstrap-select.btn-group .btn .caret {
   position: absolute;
@@ -6877,6 +6879,7 @@ div.datepicker thead tr:first-child th:hover {
 }
 .bootstrap-select.btn-group .dropdown-menu li > a {
   cursor: pointer;
+  font-size:14px;
 }
 .bootstrap-select.btn-group .dropdown-menu li > dt small {
   font-weight: normal;

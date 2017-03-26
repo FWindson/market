@@ -14,11 +14,11 @@ import com.market.service.IBasicDatatService;
 public class BasicDataService implements IBasicDatatService {
 
 	@Autowired
-	private BasicDataMapper basicDataDao;
+	private BasicDataMapper basicDataMapper;
 	
 	@Override
 	public List<BasicData> getBasicDatas() {
-		List<BasicData> listBasicData = basicDataDao.selectAll();
+		List<BasicData> listBasicData = basicDataMapper.selectAll();
 		return listBasicData;
 	}
 

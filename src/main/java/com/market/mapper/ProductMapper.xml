@@ -38,7 +38,7 @@
       nature, price, stock, 
       create_time, create_by, update_time, 
       update_by, is_deleted)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}::uuid, #{name,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}::uuid, 
       #{nature,jdbcType=SMALLINT}, #{price,jdbcType=DOUBLE}, #{stock,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT})

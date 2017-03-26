@@ -10,7 +10,7 @@ import com.market.service.IBasicDatatService;
 import com.market.service.impl.BasicDataService;
 
 public class BasicDataUtil {
-
+	
 	/**
 	 * 商品状态-初始化
 	 */
@@ -29,6 +29,10 @@ public class BasicDataUtil {
 	public final static int GoodsStatus_OffShelve = 1;
 	
 	/**
+	 * 产品性质
+	 */
+	public final static String ProductDomain_Nature = "product_nature";
+	/**
 	 * 基础数据列表（内存里）
 	 */
 	private static List<BasicData> basicDatas;
@@ -40,7 +44,7 @@ public class BasicDataUtil {
 	 */
 	public static List<BasicData> getBasicDatas() {
 		if (basicDatas == null) {
-			IBasicDatatService basicDatatService = new BasicDataService();
+			IBasicDatatService basicDatatService = (IBasicDatatService)SpringContextUtil.getBeanByClass(BasicDataService.class);
 			basicDatas = basicDatatService.getBasicDatas();
 		}
 		return basicDatas;
@@ -53,12 +57,12 @@ public class BasicDataUtil {
 	 */
 	public static List<BasicData> getBasicDataByDomain(String domain) {
 		if (basicDatas == null) {
-			IBasicDatatService basicDatatService = new BasicDataService();
+			IBasicDatatService basicDatatService = (IBasicDatatService)SpringContextUtil.getBeanByClass(BasicDataService.class);
 			basicDatas = basicDatatService.getBasicDatas();
 		}
 		List<BasicData> listByDomain = new ArrayList<BasicData>();
 		for (BasicData basicData : basicDatas) {
-			if (basicData.getDomain() == domain) {
+			if (basicData.getDomain().equals(domain)) {
 				listByDomain.add(basicData);
 			}
 		}

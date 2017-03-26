@@ -1,8 +1,15 @@
 package com.market.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.alibaba.fastjson.JSON;
+import com.market.domain.BasicData;
+import com.market.utils.BasicDataUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -67,7 +74,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/product_add")
-	public String productAdd(){
+	public String productAdd(ModelMap modelMap){
+		List<BasicData> productNatures = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.ProductDomain_Nature);
+		modelMap.addAttribute("productNature", productNatures);
+		System.out.println(JSON.toJSONString(productNatures));
 		return "admin/product_add";
 	}
 	
