@@ -50,12 +50,13 @@ public class CompanyController {
 			HttpSession session) {
 		model.addAttribute("companyId", session.getAttribute(SessionKeyUtil.LoginCompanyID));
 		model.addAttribute("companyName", session.getAttribute(SessionKeyUtil.LoginCompanyName));
+		LoggerUtil.getLogger(this).info(session.getAttribute(SessionKeyUtil.LoginCompanyName));
+		System.out.println(LoggerUtil.getLogger(this).getClass().toString());
 		return "company/dashboard";
 	}
 	
 	@RequestMapping(value = "/login_redirect")
 	public String login_redirect(String returnUrl) {
-		System.out.println("进入 login_redirect()");
 		return "redirect:/company/login?returnUrl=" + returnUrl;
 	}
 	

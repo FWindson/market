@@ -38,6 +38,7 @@
 		<table tableName="administrator" domainObjectName="Administrator">
 			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" />  
 		</table>
+		<table tableName="basic_data" domainObjectName="BasicData"></table>
 		<table tableName="commision_configuration" domainObjectName="CommisionConfiguration">
 			<columnOverride column="id" jdbcType="VARCHAR" property="id" javaType="java.lang.String" /> 
 			<columnOverride column="target_id" jdbcType="VARCHAR" property="targetId" javaType="java.lang.String" />

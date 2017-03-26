@@ -12,8 +12,12 @@
 	<context:component-scan base-package="com.market.controller" />
 	<context:component-scan base-package="com.market.apicontroller" />
 	<context:component-scan base-package="com.market.service.impl" />
+	<context:component-scan base-package="com.market.dao" />
 	<context:component-scan base-package="com.market.dao.impl" />
+	
+	<!-- 默认的注解映射的支持 -->
 	<mvc:annotation-driven />
+	
 	<mvc:resources mapping="/scripts/**" location="/scripts/" />
 	<mvc:resources mapping="/styles/**" location="/styles/" />
 	<mvc:resources mapping="/jslib/**" location="/jslib/" />
@@ -27,6 +31,8 @@
 
 	<mvc:interceptors>
 		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		
+		<!-- 公司后台登录验证拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/company/**" />
 			<mvc:exclude-mapping path="/jslib/**"/>
