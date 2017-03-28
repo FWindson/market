@@ -54,6 +54,10 @@ public class ResponseModel {
 		return FAILED;
 	}
 
+	public static ResponseModel buildSuccess() {
+		return new ResponseModel(SUCCESS,"",null);
+	}
+	
 	public static ResponseModel buildSuccess(Object data) {
 		return new ResponseModel(SUCCESS, "", data);
 	}

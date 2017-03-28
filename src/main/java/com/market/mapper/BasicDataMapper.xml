@@ -31,5 +31,6 @@
     -->
     select domain, code, label, description
     from basic_data
+    order by code
   </select>
 </mapper>

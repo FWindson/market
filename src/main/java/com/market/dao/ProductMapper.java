@@ -43,4 +43,8 @@ public interface ProductMapper {
      * @mbg.generated Mon Mar 27 01:56:44 CST 2017
      */
     int updateByPrimaryKey(Product record);
+    
+    int updateIsDeleted(String id);
+    
+    List<Product> selectMany(int pageIndex,int pageSize,String orderby,String keyword);
 }

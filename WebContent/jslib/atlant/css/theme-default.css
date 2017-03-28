@@ -45,7 +45,7 @@ body {
   background: #f5f5f5 url('../img/bg.png') left top repeat;
   position: relative;
   font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: #656d78;
   overflow-x: hidden;
 }
@@ -3382,6 +3382,7 @@ blockquote.pull-right {
   padding: 8px 10px;
 }
 .table.table-actions td {
+	font-size:14px;
   line-height: 28px;
 }
 .table .progress-small {

@@ -1,10 +1,15 @@
 package com.market.apicontroller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,8 +37,7 @@ public class AdminApiController {
 			@RequestParam("stock")int stock,
 			HttpSession session) {
 		ResponseModel responseModel;
-		/*String json = JSON.toJSONString(product);*/
-		/*String admin = session.getAttribute(SessionKeyUtil.LoginAdministratorName).toString();*/
+		//TODO:修改为登录名
 		String admin = "Windson";
 		Product product = productService.addProduct(name, nature, price, stock, admin);
 		if (product != null) {
@@ -45,6 +49,48 @@ public class AdminApiController {
 		String json = JSON.toJSONString(responseModel);
 		System.out.println(json);
 		return json;
+	}
+	
+	@RequestMapping(value = "/updateProduct",produces = "text/json;charset=UTF8",method = RequestMethod.POST)
+	@ResponseBody()
+	public String updateProduct(
+			@RequestParam("id")String id,
+			@RequestParam("name")String name,
+			@RequestParam("nature")short nature,
+			@RequestParam("price")double price,
+			@RequestParam("stock")int stock,
+			HttpSession session) {
+		ResponseModel responseModel = ResponseModel.buildFailed("修改失败");;
+		//TODO:修改为登录名
+		String admin = "Windson";
+		int influence = productService.update(id,name, price, nature ,stock, admin);
+		if (influence > 0) {
+			responseModel = ResponseModel.buildSuccess();
+		}
+		String json = JSON.toJSONString(responseModel);
+		System.out.println(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/products",produces = "text/json;charset=UTF8",method = RequestMethod.POST)
+	@ResponseBody()
+	public String products(@RequestParam(required = false) Integer start, 
+			@RequestParam(required = false) Integer length) {
+		List<Product> list = productService.getAll();
+		ResponseModel response = ResponseModel.buildSuccess(list);
+		String json = JSON.toJSONString(response);
+		return json;
+	}
+	
+	@RequestMapping(value = "/deleteProduct",produces = "text/json;charset=UTF8",method = RequestMethod.POST)
+	@ResponseBody()
+	public String deleteProduct(String uuid){
+		ResponseModel responseModel = ResponseModel.buildFailed("删除失败");
+		int influence = productService.updateIsDeleted(uuid);
+		if (influence > 0) {
+			responseModel = ResponseModel.buildSuccess();
+		}
+		return JSON.toJSONString(responseModel);
 	}
 	
 }

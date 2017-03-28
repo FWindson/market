@@ -22,7 +22,7 @@
 		<li class="active">添加产品</li>
 	</ul>
 	<!-- END 当前路径 -->
-	<div class="col-md-8">
+	<div class="col-md-6">
 		<div class="page-title">
 			<h2>添加产品</h2>
 		</div>
@@ -31,19 +31,19 @@
 				<form class="form-horizontal" role="form" id="form-product">
 					<div class="form-group">
 						<h4 class="col-md-1 control-label">产品名</h4>
-						<div class="col-md-5">
+						<div class="col-md-10">
 							<input type="text" class="form-control" name="name">
 						</div>
 					</div>
 					<div class="form-group">
 						<h4 class="col-md-1 control-label">价格</h4>
-						<div class="col-md-5">
+						<div class="col-md-3">
 							<input type="number" class="form-control" name="price">
 						</div>
 					</div>
 					<div class="form-group">
 						<h4 class="col-md-1 control-label">属性</h4>
-						<div class="col-md-5">
+						<div class="col-md-3">
 							<select class="form-control select" name="nature">
 								<!-- <option>服务</option>
 								<option>实体</option> -->
@@ -55,7 +55,7 @@
 					</div>
 					<div class="form-group">
 						<h4 class="col-md-1 control-label">库存</h4>
-						<div class="col-md-5">
+						<div class="col-md-3">
 							<input type="number" class="form-control" name="stock">
 						</div>
 						<p class="form-control-static">提示：不填代表库存无限</p>
@@ -102,19 +102,7 @@
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap.min.js"></script>
-
-	<script type='text/javascript' src='<%=basePath%>jslib/atlant/plugins/icheck/icheck.min.js'></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/scrolltotop/scrolltopcontrol.js"></script>
-
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-colorpicker.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-file-input.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-select.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/summernote/summernote.js"></script>
-	<%-- <script type="text/javascript" src="<%=basePath%>jslib/atlant/settings.js"></script> --%>
 
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/actions.js"></script>

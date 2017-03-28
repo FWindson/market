@@ -2,6 +2,8 @@ package com.market.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -9,12 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.market.domain.BasicData;
+import com.market.domain.Product;
+import com.market.service.IProductService;
 import com.market.utils.BasicDataUtil;
+import com.market.vo.ResponseModel;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
+	@Qualifier("productService")
+	IProductService productService;
+	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("adminName", "Windson");
@@ -77,6 +86,7 @@ public class AdminController {
 	public String productAdd(ModelMap modelMap){
 		List<BasicData> productNatures = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.ProductDomain_Nature);
 		modelMap.addAttribute("productNature", productNatures);
+		//TODO:System.out
 		System.out.println(JSON.toJSONString(productNatures));
 		return "admin/product_add";
 	}
@@ -86,7 +96,16 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/product_edit")
-	public String productEdit(){
+	public String productEdit(String uuid
+			,Model model){
+		// 产品
+		Product product = productService.get(uuid);
+		model.addAttribute("product", product);
+		// 产品属性
+		List<BasicData> productNatures = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.ProductDomain_Nature);
+		//TODO:System.out
+		System.out.println(JSON.toJSONString(productNatures));
+		model.addAttribute("productNature", productNatures);
 		return "admin/product_edit";
 	}
 	
