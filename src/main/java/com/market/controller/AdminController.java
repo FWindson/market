@@ -24,6 +24,7 @@ public class AdminController {
 	@Qualifier("productService")
 	IProductService productService;
 	
+	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("adminName", "Windson");
@@ -55,6 +56,12 @@ public class AdminController {
 	@RequestMapping("/goods_add")
 	public String goodsAdd(Model model) {
 		model.addAttribute("adminName", "Windson");
+		List<Product> listProduct = productService.getAll();
+		List<BasicData> listStatusData = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.GoodsDomain_Status);
+		System.out.println(JSON.toJSON(listProduct));
+		System.out.println(JSON.toJSON(listStatusData));
+		model.addAttribute("products", listProduct);
+		model.addAttribute("goodsStatus", listStatusData);
 		return "admin/goods_add";
 	}
 	

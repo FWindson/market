@@ -93,4 +93,16 @@ public class AdminApiController {
 		return JSON.toJSONString(responseModel);
 	}
 	
+	@RequestMapping(value = "/addGoods",produces = "text/json;charset=UTF8",method = RequestMethod.POST)
+	@ResponseBody()
+	public String addGoods(String name,
+			double price,
+			short status,
+			String intro,
+			String description,
+			List<Product> products){
+		
+		return JSON.toJSONString(products);
+	}
+	
 }

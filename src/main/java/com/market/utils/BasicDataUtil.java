@@ -31,7 +31,12 @@ public class BasicDataUtil {
 	/**
 	 * 产品性质
 	 */
-	public final static String ProductDomain_Nature = "product_nature";
+	public final static String ProductDomain_Nature = "product_nature";	
+	/**
+	 * 商品状态
+	 */
+	public final static String GoodsDomain_Status = "goods_status";
+	
 	/**
 	 * 基础数据列表（内存里）
 	 */
