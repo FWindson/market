@@ -47,6 +47,7 @@
 							<tr>
 								<th width="700">商品名</th>
 								<th>价格</th>
+								<th>市场</th>
 								<th>状态</th>
 								<th>库存</th>
 								<th width="250">创建时间</th>
@@ -54,11 +55,11 @@
 								<th>操作</th>
 							</tr>
 						</thead>
-						<tbody id="table-product-body"></tbody>
+						<tbody id="table-goods-body"></tbody>
 					</table>
 				</div>
 			</div>
-			<div class="panel-footer" id="table-product-footer"></div>
+			<div class="panel-footer" id="table-goods-footer"></div>
 		</div>
 		<!-- END DATATABLE EXPORT -->
 	</div>
@@ -69,6 +70,9 @@
 			<div class="mb-middle">
 				<div class="mb-title">
 					<span class="fa fa-check"></span> 删除成功
+				</div>
+				<div class="mb-content" id="mb-content-success">
+					<p></p>
 				</div>
 				<div class="mb-footer">
 					<button class="btn btn-default btn-lg pull-right mb-control-close">关闭</button>
@@ -99,8 +103,6 @@
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap.min.js"></script>
 
-
-
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/actions.js"></script>
 
@@ -108,6 +110,7 @@
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.function.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
+	
 	<script type="text/javascript" src="<%=basePath%>scripts/admin/goods_list.js"></script>
 
 </body>

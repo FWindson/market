@@ -57,8 +57,7 @@ public class ProductService implements IProductService {
 
 	@Override
 	public int update(String id,String name,double price,short nature,int stock,String admin) {
-		Product product = new Product();
-		product.setId(id);
+		Product product = productMapper.selectByPrimaryKey(id);
 		product.setName(name);
 		product.setPrice(price);
 		product.setNature(nature);

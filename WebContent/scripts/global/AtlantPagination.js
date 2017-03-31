@@ -1,5 +1,6 @@
 var AtlantPagination = (function () {
     function AtlantPagination(_reqUrl, _callbackDataFun, _reqMethod, postData, _rootDom) {
+    	debugger
         //根节点无元素(采用JQuery表达式)，如".pageContainer"
         this.rootDom = ".pageContainer";
         //请求方式：默认GET，非GET即POST
@@ -9,11 +10,11 @@ var AtlantPagination = (function () {
         //总记录数
         this.totalRecord = 0;
         //每页记录数
-        this.pageRecord = 10;
+        this.pageSize = 10;
         //总页数
         this.totalPage = 1;
         //当前页
-        this.nowPage = 1;
+        this.pageIndex = 1;
         this.reqUrl = _reqUrl;
         this.callbackDataFun = _callbackDataFun;
         if (_reqMethod) {
@@ -31,7 +32,7 @@ var AtlantPagination = (function () {
     }
     //渲染分页控件并显示
     AtlantPagination.prototype.render = function () {
-        this.Id_PageRecordComp = "PageRecordComp" + this.unionKey;
+        this.Id_pageSizeComp = "pageSizeComp" + this.unionKey;
         this.Id_InputPageComp = "InputPageComp" + this.unionKey;
         this.Id_TotalPageComp = "TotalPageComp" + this.unionKey;
         this.Id_RefreshPageBtn = "RefreshPageBtn" + this.unionKey;
@@ -42,7 +43,7 @@ var AtlantPagination = (function () {
         var _html = "";
         _html += "<div style='font-size: 1.2em; padding: 10px; height: 55px; background-color:#DFDFDF;'>";
         _html += "  <div class='col-md-3'>";
-        _html += "      <select id='" + this.Id_PageRecordComp + "' class='form-control' style='width:auto;'>";
+        _html += "      <select id='" + this.Id_pageSizeComp + "' class='form-control' style='width:auto;'>";
         _html += "          <option value='10'>每页10条</option>";
         _html += "          <option value='15'>每页15条</option>";
         _html += "          <option value='20'>每页20条</option>";
@@ -71,9 +72,9 @@ var AtlantPagination = (function () {
     AtlantPagination.prototype.initPageEvent = function () {
         var _this = this;
         //每页记录数选择事件
-        $("#" + this.Id_PageRecordComp).on('change', function () {
-            _this.pageRecord = $(this).val();
-            _this.goToPage(_this.nowPage);
+        $("#" + this.Id_pageSizeComp).on('change', function () {
+            _this.pageSize = $(this).val();
+            _this.goToPage(_this.pageIndex);
         });
         //页数跳转事件
         $("#" + this.Id_InputPageComp).on('keydown', function (e) {
@@ -87,7 +88,7 @@ var AtlantPagination = (function () {
         });
         //刷新点击事件
         $("#" + this.Id_RefreshPageBtn).on('click', function () {
-            _this.goToPage(_this.nowPage);
+            _this.goToPage(_this.pageIndex);
         });
         //首页点击事件
         $("#" + this.Id_FirstPageBtn).on('click', function () {
@@ -99,35 +100,35 @@ var AtlantPagination = (function () {
         });
         //上一页点击事件
         $("#" + this.Id_BeforePageBtn).on('click', function () {
-            _this.goToPage(_this.nowPage - 1);
+            _this.goToPage(_this.pageIndex - 1);
         });
         //下一页点击事件
         $("#" + this.Id_AfterPageBtn).on('click', function () {
-            _this.goToPage(_this.nowPage + 1);
+            _this.goToPage(_this.pageIndex + 1);
         });
     };
     //跳转到指定页
     AtlantPagination.prototype.goToPage = function (toPage) {
-        this.nowPage = toPage;
+        this.pageIndex = toPage;
         if (toPage < 1) {
-            this.nowPage = 1;
+            this.pageIndex = 1;
         }
         if (toPage > this.totalPage) {
-            this.nowPage = this.totalPage;
+            this.pageIndex = this.totalPage;
         }
         this.getData();
     };
     //刷新分页信息
     AtlantPagination.prototype.refreshPageInfo = function (totalRecord) {
         this.totalRecord = totalRecord;
-        this.totalPage = parseInt((this.totalRecord / this.pageRecord).toString());
-        if (this.totalRecord % this.pageRecord > 0) {
+        this.totalPage = parseInt((this.totalRecord / this.pageSize).toString());
+        if (this.totalRecord % this.pageSize > 0) {
             this.totalPage = this.totalPage + 1;
         }
         if (this.totalPage < 1) {
             this.totalPage = 1;
         }
-        $('#' + this.Id_InputPageComp).val(this.nowPage.toString());
+        $('#' + this.Id_InputPageComp).val(this.pageIndex.toString());
         $('#' + this.Id_TotalPageComp).html(this.totalPage.toString());
     };
     //获取数据
@@ -137,7 +138,7 @@ var AtlantPagination = (function () {
         if (this.reqUrl.indexOf("?") < 1) {
             _tmpReqUrl = _tmpReqUrl + "?1=1";
         }
-        _tmpReqUrl = _tmpReqUrl + "&nowPage=" + this.nowPage + "&pageRecord=" + this.pageRecord;
+        _tmpReqUrl = _tmpReqUrl + "&pageIndex=" + this.pageIndex + "&pageSize=" + this.pageSize;
         var ajaxObject = {
             url: _tmpReqUrl,
             method: this.reqMethod,
@@ -169,7 +170,7 @@ var AtlantPagination = (function () {
     };
     //重新加载
     AtlantPagination.prototype.reload = function () {
-        this.goToPage(this.nowPage);
+        this.goToPage(this.pageIndex);
     };
     return AtlantPagination;
 }());

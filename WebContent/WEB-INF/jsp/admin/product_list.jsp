@@ -99,8 +99,6 @@
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap.min.js"></script>
 
-
-
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/actions.js"></script>
 
@@ -108,6 +106,7 @@
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.function.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
+	
 	<script type="text/javascript" src="<%=basePath%>scripts/admin/product_list.js"></script>
 
 </body>

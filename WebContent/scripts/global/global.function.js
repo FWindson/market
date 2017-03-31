@@ -21,3 +21,62 @@ Date.prototype.format = function(format) {
 	return format;
 }
 
+/**
+ * 弹出成功提示对话框
+ * @param message 弹框内容
+ * @returns
+ */
+function popSuccessMessageBox(message){
+	var $box = $('#message-box-success');
+//	if($box == null) {
+//		var _html = ''; 
+//		_html += '<div class="message-box message-box-success animated fadeIn" id="message-box-success">';
+//		_html += '	<div class="mb-container">';
+//		_html += '		<div class="mb-middle">';
+//		_html += '			<div class="mb-title">';
+//		_html += '				<span class="fa fa-check"></span> 成功';
+//		_html += '			</div>';
+//		if(message != null || message != ''){
+//			_html += '			<div class="mb-content" id="mb-content-success">' + message + '</div>';
+//		}
+//		_html += '			<div class="mb-footer">';
+//		_html += '				<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>';
+//		_html += '			</div>';
+//		_html += '		</div>';
+//		_html += '	</div>';
+//		_html += '</div>';
+//		$('body').append(_html);
+//		$box = $('#message-box-success');
+//	}
+	$box.addClass('open');
+}
+
+/**
+ * 弹出失败提示对话框
+ * @param message 弹框内容
+ * @returns
+ */
+function popErrorMessageBox(message){
+	var $box = $('#message-box-danger');
+//	if($box == null) {
+//		var _html = ''; 
+//		_html += '<div class="message-box message-box-danger animated fadeIn" id="message-box-danger">';
+//		_html += '	<div class="mb-container">';
+//		_html += '		<div class="mb-middle">';
+//		_html += '			<div class="mb-title">';
+//		_html += '				<span class="fa fa-check"></span> 失败';
+//		_html += '			</div>';
+//		if(message != null || message != ''){
+//			_html += '			<div class="mb-content" id="mb-content-danger">' + message + '</div>';
+//		}
+//		_html += '			<div class="mb-footer">';
+//		_html += '				<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>';
+//		_html += '			</div>';
+//		_html += '		</div>';
+//		_html += '	</div>';
+//		_html += '</div>';
+//		$('body').append(_html);
+//		$box = $('#message-box-danger');
+//	}
+	$box.addClass('open');
+}

@@ -17,13 +17,25 @@ $(function(){
 			});
 		});
 		goodsForm.products = productArray;
+		/*var postData = {
+			goods : goodsForm,
+			products : productArray
+		};*/
+		var postData = {
+				goods : goodsForm
+			};
 		console.log(goodsForm);
+		console.log(JSON.stringify(goodsForm));
 		$.ajax({
 			url:HOST + 'api/admin/addGoods',
 			type:'POST',
+			dataType: 'json',  
+			contentType:'application/json;charset=UTF8',
 			data:JSON.stringify(goodsForm),
 			success:function(response){
-				console.log(response);
+				if(response.status == 200) {
+					popSuccessMessageBox('添加成功');
+				}
 			},
 			error :function(res){
 				console.log(res);
@@ -51,7 +63,7 @@ $(function(){
 		html += '			<h3 style="margin:0;line-height:28px;">' + name + '</h3>';
 		html += '		</div>';
 		html += '		<div class="col-md-2">';
-		html += '			<input type="number" class="form-control" placeHolder="数量" pid="' + pid + '" name="product-item" />';
+		html += '			<input type="number" class="form-control" placeHolder="数量" pid="' + pid + '" name="product-item" value="0"/>';
 		html += '		</div>';
 		html += '		<div class="col-md-1">';
 		html += '			<div class="btn btn-danger pull-right btn-remove-product">删除</div>';

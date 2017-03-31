@@ -26,7 +26,10 @@ var globalBasicData = [ {
 	label : '实物'
 } ];
 
+// 产品性质
 var BasicData_ProductNature = "product_nature";
+// 商品状态
+var BasicData_GoodsStatus = "goods_status";
 
 function getBasicDataLabel(paramDomain, paramCode) {
 	var result = '';
