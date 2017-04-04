@@ -2,7 +2,7 @@ $(function() {
 	var url = HOST + 'api/admin/goods?keyword=&orderby=';
 	var method = 'POST';
 	var pagination = new AtlantPagination(url, function(response) {
-		console.log(item);
+		console.log(response);
 		var _this = this;
 		var result = response.result;
 		var html = '';
@@ -24,7 +24,7 @@ $(function() {
 		$('#table-goods-body').html(html);
 		$('.btn-edit').click(function(){
 			var uuid = $(this).attr('uuid');
-			location.href = HOST + 'admin/goods_edit?uuid=' + uuid;
+			location.href = HOST + 'admin/goods_edit?goodsId=' + uuid;
 		});
 		$('.btn-del').click(function(){
 			var uuid = $(this).attr('uuid');

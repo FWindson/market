@@ -8,10 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
 import com.market.domain.BasicData;
+import com.market.domain.Goods;
 import com.market.domain.Product;
+import com.market.service.IGoodsService;
 import com.market.service.IProductService;
 import com.market.utils.BasicDataUtil;
 import com.market.vo.ResponseModel;
@@ -24,6 +27,9 @@ public class AdminController {
 	@Qualifier("productService")
 	IProductService productService;
 	
+	@Autowired
+	@Qualifier("goodsService")
+	IGoodsService goodsService;
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
@@ -58,8 +64,6 @@ public class AdminController {
 		model.addAttribute("adminName", "Windson");
 		List<Product> listProduct = productService.getAll();
 		List<BasicData> listStatusData = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.GoodsDomain_Status);
-		System.out.println(JSON.toJSON(listProduct));
-		System.out.println(JSON.toJSON(listStatusData));
 		model.addAttribute("products", listProduct);
 		model.addAttribute("goodsStatus", listStatusData);
 		return "admin/goods_add";
@@ -71,8 +75,13 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/goods_edit")
-	public String goodsEdit(Model model) {
-		model.addAttribute("adminName", "Windson");
+	public String goodsEdit(String goodsId,
+			Model model) {
+		List<Product> listProduct = productService.getAll();
+		List<BasicData> listStatusData = BasicDataUtil.getBasicDataByDomain(BasicDataUtil.GoodsDomain_Status);
+		model.addAttribute("products", listProduct);
+		model.addAttribute("goodsStatus", listStatusData);
+		model.addAttribute("goodsId",goodsId);
 		return "admin/goods_edit";
 	}
 	
@@ -115,5 +124,7 @@ public class AdminController {
 		model.addAttribute("productNature", productNatures);
 		return "admin/product_edit";
 	}
+	
+	
 	
 }

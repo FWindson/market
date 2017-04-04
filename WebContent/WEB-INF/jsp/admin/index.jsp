@@ -5,6 +5,11 @@
 	String path = request.getContextPath();  
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<style>
+#framex {
+	height:720px!important;
+}
+</style>
 <html>
     <head>        
         <title>后台管理</title>            

@@ -4,13 +4,18 @@ import java.util.List;
 
 import com.market.domain.Goods;
 import com.market.requestmodel.GoodsForm;
+import com.market.vo.PageDataModel;
 import com.market.vo.ResponseModel;
 
 public interface IGoodsService {
 	
 	int addGoods(GoodsForm goodsForm,String admin);
 	
+	int updateGoods(GoodsForm goodsForm,String admin);
+	
 	List<Goods> getAll();
 
-	List<Goods> getList(int pageIndex, int pageSize, String keyword, String orderby);
+	PageDataModel getList(int pageIndex, int pageSize, String keyword, String orderby);
+	
+	Goods getSingle(String id);
 }

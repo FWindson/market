@@ -24,8 +24,7 @@ $(function(){
 		var postData = {
 				goods : goodsForm
 			};
-		console.log(goodsForm);
-		console.log(JSON.stringify(goodsForm));
+
 		$.ajax({
 			url:HOST + 'api/admin/addGoods',
 			type:'POST',

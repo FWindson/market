@@ -1,6 +1,8 @@
 package com.market.dao;
 
 import com.market.domain.GoodsProductRelation;
+import com.market.vo.ProductOfGoodsEditModel;
+
 import java.util.List;
 
 public interface GoodsProductRelationMapper {
@@ -43,4 +45,10 @@ public interface GoodsProductRelationMapper {
      * @mbg.generated Mon Mar 27 01:56:44 CST 2017
      */
     int updateByPrimaryKey(GoodsProductRelation record);
+    
+    List<GoodsProductRelation> selectByGoodsId(String goodsId);
+    
+    List<ProductOfGoodsEditModel> selectProudctsByGoodsId(String goodsId);
+    
+    int deleteRelation(List<GoodsProductRelation> list);
 }

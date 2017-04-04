@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,9 +26,13 @@ import com.market.requestmodel.GoodsForm;
 import com.market.requestmodel.GoodsFormProduct;
 import com.market.service.IGoodsService;
 import com.market.service.IProductService;
+import com.market.service.impl.GoodsProductRelationService;
 import com.market.service.impl.GoodsService;
 import com.market.utils.LoggerUtil;
 import com.market.utils.SessionKeyUtil;
+import com.market.vo.GoodsEditModel;
+import com.market.vo.PageDataModel;
+import com.market.vo.ProductOfGoodsEditModel;
 import com.market.vo.ResponseModel;
 
 @Controller
@@ -40,7 +45,9 @@ public class AdminApiController {
 	@Autowired
 	@Qualifier("goodsService")
 	private IGoodsService goodsService;
-
+	@Autowired
+	@Qualifier("goodsProductRelationService")
+	private GoodsProductRelationService goodsProductRelationService;
 
 	/**
 	 * 获取登录ID
@@ -159,16 +166,47 @@ public class AdminApiController {
 			@RequestParam(required = false) String keyword,
 			@RequestParam(required = false) String orderby,
 			HttpSession session) {
-		ResponseModel responseModel = null;
+		PageDataModel pageDataModel = null;
 		try {
-			List<Goods> listGoods = goodsService.getList(pageIndex, pageSize, keyword, orderby);
-			responseModel = ResponseModel.buildSuccess(listGoods);
+			pageDataModel = goodsService.getList(pageIndex, pageSize, keyword, orderby);
 		} catch (Exception e) {
 			LoggerUtil.getLogger(this).error(e.getMessage());
+			pageDataModel = PageDataModel.buildFailed(e.getMessage());
+		}
+		return JSON.toJSONString(pageDataModel);
+	}
+	
+	@RequestMapping(value = "/getGoodsDetail", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getGoodsDetail(String goodsId,
+			Model model,
+			HttpSession session){
+		Goods goods = goodsService.getSingle(goodsId);
+		List<ProductOfGoodsEditModel> products = goodsProductRelationService.getProductsOfGoods(goodsId);
+		GoodsEditModel goodEditModel = new GoodsEditModel();
+		goodEditModel.goods = goods;
+		goodEditModel.products = products;
+		String json = JSON.toJSONString(ResponseModel.buildSuccess(goodEditModel));
+		System.out.println(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/updateGoods", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String updateGoods(@RequestBody GoodsForm goodsForm,
+			HttpSession session) {
+		ResponseModel responseModel = null;
+		try {
+			int influence = goodsService.updateGoods(goodsForm,getLoginUserName(session));
+			responseModel = ResponseModel.buildSuccess();
+		} catch (Exception e) {
 			responseModel = ResponseModel.buildFailed(e.getMessage());
 		}
-		return JSON.toJSONString(responseModel);
+		String json = JSON.toJSONString(responseModel);
+		System.out.println(json);
+		return json;
 	}
+	
 	/*@RequestMapping(value = "/addGoods", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
 	@ResponseBody()
 	public String addGoods(@RequestParam("goods")GoodsForm goods,@RequestParam("products")GoodsFormProduct[] products) {

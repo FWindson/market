@@ -1,6 +1,5 @@
 var AtlantPagination = (function () {
     function AtlantPagination(_reqUrl, _callbackDataFun, _reqMethod, postData, _rootDom) {
-    	debugger
         //根节点无元素(采用JQuery表达式)，如".pageContainer"
         this.rootDom = ".pageContainer";
         //请求方式：默认GET，非GET即POST
@@ -8,7 +7,7 @@ var AtlantPagination = (function () {
         //唯一键
         this.unionKey = parseInt((1000000 * Math.random()).toString()).toString();
         //总记录数
-        this.totalRecord = 0;
+        this.totalPage = 0;
         //每页记录数
         this.pageSize = 10;
         //总页数
@@ -119,10 +118,10 @@ var AtlantPagination = (function () {
         this.getData();
     };
     //刷新分页信息
-    AtlantPagination.prototype.refreshPageInfo = function (totalRecord) {
-        this.totalRecord = totalRecord;
-        this.totalPage = parseInt((this.totalRecord / this.pageSize).toString());
-        if (this.totalRecord % this.pageSize > 0) {
+    AtlantPagination.prototype.refreshPageInfo = function (totalPage) {
+        this.totalPage = totalPage;
+        this.totalPage = parseInt((this.totalPage / this.pageSize).toString());
+        if (this.totalPage % this.pageSize > 0) {
             this.totalPage = this.totalPage + 1;
         }
         if (this.totalPage < 1) {
@@ -144,7 +143,7 @@ var AtlantPagination = (function () {
             method: this.reqMethod,
             success: function (_data) {
                 _this.callbackDataFun(_data);
-                _this.refreshPageInfo(_data.TotalRecord);
+                _this.refreshPageInfo(_data.totalPage);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.responseText);

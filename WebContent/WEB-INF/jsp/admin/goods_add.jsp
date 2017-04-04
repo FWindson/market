@@ -22,7 +22,7 @@
 		<li class="active">添加商品</li>
 	</ul>
 	<!-- END 当前路径 -->
-	<div class="col-md-6">
+	<div class="col-md-6 col-sm-12">
 		<div class="page-title">
 			<h2>添加商品</h2>
 		</div>
@@ -120,7 +120,7 @@
 	</div>
 
 	<!-- 提示框 -->
-	<!-- <div class="message-box message-box-success animated fadeIn" id="message-box-success">
+	<div class="message-box message-box-success animated fadeIn" id="message-box-success">
 		<div class="mb-container">
 			<div class="mb-middle">
 				<div class="mb-title">
@@ -133,18 +133,18 @@
 		</div>
 	</div>
 	<div class="message-box message-box-danger animated fadeIn" id="message-box-danger">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
-                    <div class="mb-content" id="mb-content-danger">
-                        <p></p>
-                    </div>
-                    <div class="mb-footer">
-                        <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
-                    </div>
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
+                <div class="mb-content" id="mb-content-danger">
+                    <p></p>
+                </div>
+                <div class="mb-footer">
+                    <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
                 </div>
             </div>
-        </div> -->
+        </div>
+    </div>
 	<!-- end s提示框 -->
 
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>               --%>

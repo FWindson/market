@@ -14,6 +14,7 @@
     <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
     <result column="quantity" jdbcType="BIGINT" property="quantity" />
   </resultMap>
+  <resultMap id="ProductOfGoodsEditModel" type="com.market.vo.ProductOfGoodsEditModel"></resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbg.generated
@@ -67,4 +68,23 @@
     select id, goods_id, product_id, create_time, is_deleted, quantity
     from goods_product_relation
   </select>
+  <select id="selectProudctsByGoodsId" parameterType="java.lang.String" resultMap="ProductOfGoodsEditModel">
+    select p.id,p.name,relation.quantity as quantity 
+    from goods_product_relation as relation 
+    left join product as p on p.id = product_id 
+    where relation.goods_id = #{goodsId,jdbcType=VARCHAR}::uuid and relation.is_deleted != true
+  </select>
+  <select id="selectByGoodsId" resultMap="BaseResultMap">
+    select id, goods_id, product_id, create_time, is_deleted, quantity
+    from goods_product_relation 
+    where goods_id = #{goodsId}::uuid and is_deleted = false 
+  </select>
+  <update id="deleteRelation" parameterType="java.util.List">
+  		update goods_product_relation 
+  		set is_deleted = true 
+		where id in 
+  	<foreach collection="list" item="item" index="index" open="(" separator="," close=")" >
+  		#{item.id}::uuid
+  	</foreach>
+  </update>
 </mapper>
