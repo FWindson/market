@@ -43,4 +43,6 @@ public interface OrderDetailMapper {
      * @mbg.generated Mon Mar 27 01:56:44 CST 2017
      */
     int updateByPrimaryKey(OrderDetail record);
+    
+    OrderDetail getOrderDetailByOrderId(String orderId);
 }

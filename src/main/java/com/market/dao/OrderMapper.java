@@ -1,7 +1,8 @@
 package com.market.dao;
 
-import com.market.domain.Order;
 import java.util.List;
+
+import com.market.domain.Order;
 
 public interface OrderMapper {
     /**
@@ -43,4 +44,6 @@ public interface OrderMapper {
      * @mbg.generated Mon Mar 27 01:56:44 CST 2017
      */
     int updateByPrimaryKey(Order record);
+    
+    Order getOrderByCustomerId(String Id);
 }

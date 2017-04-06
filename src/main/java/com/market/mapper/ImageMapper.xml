@@ -60,7 +60,7 @@
     -->
     select id, file_name, suffix, relative_path, create_time, create_by, is_deleted
     from image
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     <!--
