@@ -23,9 +23,6 @@ import com.market.vo.ResponseModel;
 public class GoodsService implements IGoodsService{
 
 	@Autowired
-	private GoodsProductRelationService goodsProductRelationService;
-	
-	@Autowired
 	private GoodsMapper goodsMapper;
 	@Autowired
 	private GoodsProductRelationMapper goodsProductRelationMapper;

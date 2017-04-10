@@ -69,4 +69,26 @@
     select id, applicant_type, applicant_id, number, order_detail_id, create_time
     from commision_record
   </select>
+  
+  <!-- 分页 -->
+  <select id="selectMany" resultMap="BaseResultMap">
+  	select * 
+	from commision_record 
+	where applicant_type = #{applicantType} and applicant_id = #{applicantId}::uuid 
+  	<choose>
+	  	<when test="orderby != null and orderby != ''">
+	  		order by #{orderby} 
+	  	</when>
+	  	<otherwise>
+	  		order by create_time desc 
+	  	</otherwise>
+  	</choose>
+  	limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize} 
+  </select>
+  
+  <select id="selectManyCount" resultType="java.lang.Integer">
+  	select count(*) from commision_record 
+  	where applicant_type = #{applicantType} and applicant_id = #{applicantId}::uuid 
+  </select>
+  
 </mapper>

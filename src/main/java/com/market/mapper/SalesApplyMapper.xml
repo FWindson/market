@@ -83,4 +83,12 @@
     update_time, handler_by, is_deleted
     from sales_apply
   </select>
+  <select id="selectByCompany" resultMap="BaseResultMap">
+    select * from sales_apply 
+    where company_id = #{companyId}::uuid 
+    <if test="keyword != null and keyword != ''">
+    	and name CONCAT('%',#{keyword},'%') 
+    </if>
+    limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize}
+  </select>
 </mapper>

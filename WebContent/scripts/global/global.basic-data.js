@@ -24,12 +24,36 @@ var globalBasicData = [ {
 	domain : 'product_nature',
 	code : 2,
 	label : '实物'
-} ];
+}, {
+	domain : 'sales_status',
+	code : 1,
+	label : '在职'
+},{
+	domain : 'sales_status',
+	code : 2,
+	label : '离职'
+},{
+	domain : 'sales_status',
+	code : 3,
+	label : '辞退'
+},{
+	domain : 'commision_applicant_type',
+	code : 1,
+	label : '公司'
+},{
+	domain : 'commision_applicant_type',
+	code : 2,
+	label : '员工'
+}];
 
 // 产品性质
 var BasicData_ProductNature = "product_nature";
 // 商品状态
 var BasicData_GoodsStatus = "goods_status";
+// 员工状态
+var BasicData_SalesStatus = "sales_status";
+// 佣金记录获得者类型
+var BasicData_CommisionApplicantType = "commision_applicant_type";
 
 function getBasicDataLabel(paramDomain, paramCode) {
 	var result = '';

@@ -7,12 +7,12 @@
 %>
 <style>
 #framex {
-	min-height:720px!important;
+	height:720px!important;
 }
 </style>
 <html>
     <head>        
-        <title>公司后台管理</title>            
+        <title>后台管理</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
@@ -39,7 +39,7 @@
                                 <img src="<%=basePath%>jslib/atlant/assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name">${adminName}</div>
+                                <div class="profile-data-name">${companyName}</div>
                                 <!-- <div class="profile-data-title">Web Developer/Designer</div> -->
                             </div>
                             <!-- <div class="profile-controls">
@@ -54,15 +54,14 @@
                     </li>                    
                     <li class="xn-title">模块管理</li>
                     <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">产品管理</span></a>                        
+                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">销售员管理</span></a>                        
                         <ul>
-                        	<li><a href="<%=basePath%>admin/product_list" target="framex"><span class="fa fa-magic"></span>产品列表</a></li>
-                        	<li><a href="<%=basePath%>admin/product_add" target="framex"><span class="fa fa-magic"></span>新建产品</a></li>
-                        	<li><a href="<%=basePath%>admin/product_edit" target="framex"><span class="fa fa-magic"></span>编辑产品</a></li>
+                        	<%-- <li><a href="<%=basePath%>company/sales_applys" target="framex"><span class="fa fa-magic"></span>销售员申请列表</a></li> --%>
+                        	<li><a href="<%=basePath%>company/sales" target="framex"><span class="fa fa-magic"></span>员工列表</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">商品管理</span></a>                        
+                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">收入管理</span></a>                        
                         <ul>
                         	<li><a href="<%=basePath%>admin/goods_list" target="framex"><span class="fa fa-magic"></span>商品列表</a></li>
                         	<li><a href="<%=basePath%>admin/goods_add" target="framex"><span class="fa fa-magic"></span>新建商品</a></li>
@@ -70,35 +69,12 @@
                         </ul>
                     </li>
                     <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">订单管理</span></a>                        
+                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">客户管理</span></a>                        
                         <ul>
                         	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>订单列表</a></li>
                         	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>消费券列表</a></li>
                         </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">客户管理</span></a>                        
-                        <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>客户列表</a><div class="informer informer-success">+32</div></li>
-                        </ul>
-                    </li>
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">公司管理</span></a>                        
-                        <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 公司列表</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 新建公司</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 编辑公司</a></li>
-                        </ul>
-                    </li>      
-                    <li class="xn-openable">
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">销售员管理</span></a>                        
-                        <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 销售员列表</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 新建销售员</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 编辑销售员</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 销售员审核</a></li>
-                        </ul>
-                    </li>                       
+                    </li>                
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-pencil"></span> <span class="xn-text">Forms</span></a>
                         <ul>
@@ -263,5 +239,13 @@
    
     </body>
 </html>
+
+
+
+
+
+
+
+
 
 

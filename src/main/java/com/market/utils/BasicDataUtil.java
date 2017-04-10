@@ -18,15 +18,23 @@ public class BasicDataUtil {
 	/**
 	 * 商品状态-即将上市
 	 */
-	public final static int GoodsStatus_CommingSoon = 1;
+	public final static int GoodsStatus_CommingSoon = 2;
 	/**
 	 * 商品状态-上架
 	 */
-	public final static int GoodsStatus_Shelve = 1;
+	public final static int GoodsStatus_Shelve = 3;
 	/**
 	 * 商品状态-下架
 	 */
-	public final static int GoodsStatus_OffShelve = 1;
+	public final static int GoodsStatus_OffShelve = 4;
+	/**
+	 * 申请者类型-公司
+	 */
+	public final static int ApplicantType_Company = 1;
+	/**
+	 * 申请者类型-销售员
+	 */
+	public final static int ApplicantType_Sales = 2;
 	
 	/**
 	 * 产品性质
@@ -36,6 +44,10 @@ public class BasicDataUtil {
 	 * 商品状态
 	 */
 	public final static String GoodsDomain_Status = "goods_status";
+	/**
+	 * 申请者类型
+	 */
+	public final static String Applicant_Type = "applicant_type";
 	
 	/**
 	 * 基础数据列表（内存里）

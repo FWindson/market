@@ -18,62 +18,106 @@
 
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
-		<li><a href="#">商品管理</a></li>
-		<li class="active">编辑商品</li>
+		<li><a href="#">员工管理</a></li>
+		<li class="active">员工详情</li>
 	</ul>
 	<!-- END 当前路径 -->
 	<div class="col-md-12">
 		<div class="page-title">
-			<h2>编辑商品</h2>
+			<h2>员工详情</h2>
 		</div>
 		<div class="col-md-12">
 			<form class="form-horizontal" role="form" id="form-goods">
-				<input type="hidden" name="id" value="${goodsId}" id="input-goodsid">
+				<input type="hidden" name="id" value="${salesId}" id="input-salesId">
 				<div class="panel panel-default">
-					<div class="panel-body">
-						<form class="form-horizontal" role="form">
+					<div class="col-md-4">
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td>员工名</td>
+											<td id="sales_name"></td>
+										</tr>
+										<tr>
+											<td>佣金收入总额</td>
+											<td id="sales_commision_total"></td>
+										</tr>
+										<tr>
+											<td>员工状态</td>
+											<td id="sales_status"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- <form class="form-horizontal" role="form">
 							<div class="form-group">
-								<h4 class="col-md-1">商品名</h4>
+								<h4 class="col-md-1">员工名</h4>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="name">
+									<h4 id="sales_name"></h4>
 								</div>
 							</div>
 							<div class="form-group">
-								<h4 class="col-md-1">价格</h4>
+								<h4 class="col-md-1">佣金收入总额</h4>
 								<div class="col-md-4">
-									<input type="number" class="form-control" name="price">
+									<h4 id="sales_commision_total"></h4>
 								</div>
 							</div>
 							<div class="form-group">
-								<h4 class="col-md-1">市场价</h4>
+								<h4 class="col-md-1">员工状态</h4>
 								<div class="col-md-4">
-									<input type="number" class="form-control" name="markePrice">
+									<h4 id="sales_status"></h4>
 								</div>
 							</div>
-							<div class="form-group">
-								<h4 class="col-md-1">状态</h4>
-								<div class="col-md-4">
-									<select class="form-control select" name="status">
-										<!-- <option>初始化</option>
-										<option>即将上市</option>
-										<option>上架</option>
-										<option>下架</option> -->
-										<c:forEach items="${goodsStatus}" var="status">
-											<option value="${status.code}">${status.label}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-						</form>
+						</form> -->
+						</div>
 					</div>
+
 					<div class="panel-body">
 						<div class="col-md-6">
-							<h4>商品简介</h4>
-							<textarea class="summernote" id="textarea-intro" name="intro"></textarea>
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">员工客户</h3>
+								</div>
+								<div class="panel-body panel-body-table">
+									<div class="table-responsive">
+										<table class="table table-bordered table-striped table-actions">
+											<thead>
+												<tr>
+													<th>姓名</th>
+												</tr>
+											</thead>
+											<tbody id="table-customer-body"></tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer" id="table-customer-footer"></div>
+							</div>
 						</div>
-						<div class="col-md-6">
-							<h4>商品详情</h4>
-							<textarea class="summernote" id="textarea-desc" name="description"></textarea>
+						<div class="col-md-12" style="margin-top: 30px;">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">员工收入明细</h3>
+								</div>
+								<div class="panel-body panel-body-table">
+									<div class="table-responsive">
+										<table class="table table-bordered table-striped table-actions">
+											<thead>
+												<tr>
+													<th>订单号</th>
+													<th>商品</th>
+													<th>数量</th>
+													<th>合计</th>
+													<th>时间</th>
+													<th>获得佣金</th>
+												</tr>
+											</thead>
+											<tbody id="table-commision-body"></tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-footer" id="table-commision-footer"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -125,7 +169,7 @@
 		<div class="mb-container">
 			<div class="mb-middle">
 				<div class="mb-title">
-					<span class="fa fa-check"></span> 成功
+					<span class="fa fa-check"></span> 添加产品成功
 				</div>
 				<div class="mb-footer">
 					<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
@@ -134,18 +178,20 @@
 		</div>
 	</div>
 	<div class="message-box message-box-danger animated fadeIn" id="message-box-danger">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
-                    <div class="mb-content" id="mb-content-danger">
-                        <span class="fa fa-check"></span> 失败
-                    </div>
-                    <div class="mb-footer">
-                        <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="mb-container">
+			<div class="mb-middle">
+				<div class="mb-title">
+					<span class="fa fa-times"></span> Danger
+				</div>
+				<div class="mb-content" id="mb-content-danger">
+					<p></p>
+				</div>
+				<div class="mb-footer">
+					<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- end s提示框 -->
 
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>               --%>
@@ -164,7 +210,10 @@
 
 	<script type="text/javascript" src="<%=basePath%>scripts/global/config.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.function.js"></script>
-	<script type="text/javascript" src="<%=basePath%>scripts/admin/goods_edit.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
+
+	<script type="text/javascript" src="<%=basePath%>scripts/company/sales_detail.js"></script>
 
 </body>
 </html>
