@@ -18,8 +18,8 @@
 
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
-		<li><a href="#">公司后台管理</a></li>
-		<li class="active">佣金收入明细</li>
+		<li><a href="#">公司管理</a></li>
+		<li class="active">公司列表</li>
 	</ul>
 	<!-- END 当前路径 -->
 
@@ -28,7 +28,7 @@
 		<!-- START DATATABLE EXPORT -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">佣金收入明细</h3>
+				<h3 class="panel-title">公司列表</h3>
 				<div class="btn-group pull-right">
 					<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-bars"></i> Export Data
@@ -45,12 +45,13 @@
 					<table class="table table-bordered table-striped table-actions">
 						<thead>
 							<tr>
-								<th>订单号</th>
-								<th>商品</th>
-								<th>数量</th>
-								<th>合计</th>
-								<th>时间</th>
-								<th>获得佣金</th>
+								<th>公司名</th>
+								<th>状态</th>
+								<th>剩余佣金</th>
+								<th>冻结佣金</th>
+								<th width="250">创建时间</th>
+								<th width="250">创建者</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody id="table-body"></tbody>
@@ -109,7 +110,7 @@
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
 	
-	<script type="text/javascript" src="<%=basePath%>scripts/company/commisions.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/admin/company_list.js"></script>
 
 </body>
 </html>

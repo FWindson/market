@@ -158,6 +158,9 @@ public class CompanyApiController {
 			int pageSize,
 			String orderby,
 			HttpSession session) {
+		if (applicantId == null || applicantId.equals("")) {
+			applicantId = getLoginUserID(session);
+		}
 		PageDataModel pageDataModel = commisionService.getCommisionRecordModels(applicantType, applicantId, pageIndex, pageSize,orderby);
 		String json = JSON.toJSONString(pageDataModel);
 		return json;

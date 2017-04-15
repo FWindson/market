@@ -20,12 +20,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.market.domain.CommisionConfiguration;
+import com.market.domain.Company;
 import com.market.domain.Goods;
 import com.market.domain.Product;
+import com.market.requestmodel.CommisionConfigurationForm;
 import com.market.requestmodel.GoodsForm;
 import com.market.requestmodel.GoodsFormProduct;
 import com.market.service.IGoodsService;
 import com.market.service.IProductService;
+import com.market.service.impl.CommisionConfigurationService;
+import com.market.service.impl.CompanyService;
 import com.market.service.impl.GoodsProductRelationService;
 import com.market.service.impl.GoodsService;
 import com.market.utils.LoggerUtil;
@@ -48,7 +53,13 @@ public class AdminApiController {
 	@Autowired
 	@Qualifier("goodsProductRelationService")
 	private GoodsProductRelationService goodsProductRelationService;
-
+	@Autowired
+	@Qualifier("companyService")
+	private CompanyService companyService;
+	@Autowired
+	private CommisionConfigurationService commisionConfigurationService;
+	
+	
 	/**
 	 * 获取登录ID
 	 * @param session
@@ -207,14 +218,77 @@ public class AdminApiController {
 		return json;
 	}
 	
-	/*@RequestMapping(value = "/addGoods", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	/**
+	 * 公司列表
+	 * @param pageIndex
+	 * @param pageSize
+	 * @param keyword
+	 * @param orderby
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/getCompanys", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
 	@ResponseBody()
-	public String addGoods(@RequestParam("goods")GoodsForm goods,@RequestParam("products")GoodsFormProduct[] products) {
-		String json = JSON.toJSONString(goods);
-		//String json2 = JSON.toJSONString(products);
-		System.out.print(json);
-		//System.out.print(json2);
+	public String getCompanys(int pageIndex,
+			int pageSize,
+			String keyword,
+			String orderby,
+			HttpSession session){
+		PageDataModel dataModel = companyService.getCompanys(pageIndex, pageSize, keyword, orderby);
+		String json = JSON.toJSONString(dataModel);
+		System.out.println(json);
 		return json;
-	}*/
+	}
+	
+	
+	
+	@RequestMapping(value = "/addCompany", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String addCompany(@RequestParam("name")String name,
+			@RequestParam("password")String password,
+			HttpSession session)
+	{
+		ResponseModel model = companyService.createCompany(name, password, getLoginUserName(session));
+		String json = JSON.toJSONString(model);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/setCommisionConfigurations", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String setCommisionConfigurations(@RequestBody CommisionConfigurationForm form,
+			HttpSession session){
+		ResponseModel response = commisionConfigurationService.setCommsionConfiguration(form, getLoginUserName(session));
+		String json = JSON.toJSONString(response);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getCommisionsConfigurationByGoodsId", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getCommisionsConfigurationByGoodsId(String goodsId,int targetType,String targetId,String orderby) {
+		PageDataModel response = commisionConfigurationService.getCommisionConfigurations(goodsId, targetType, targetId,orderby);
+		String json = JSON.toJSONString(response);
+		System.out.print(json);
+		return json; 
+	}
+	
+	@RequestMapping(value = "/deleteCommisionConfiguration", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String deleteCommisionConfiguration(String id){
+		ResponseModel response = commisionConfigurationService.deleteCommisionConfiguration(id);
+		String json = JSON.toJSONString(response);
+		System.out.print(json);
+		return json; 
+	}
+	
+	@RequestMapping(value = "/updateCompany", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String updateCompany(String companyId,String companyName,String password,HttpSession session) {
+		ResponseModel response = companyService.updateCompany(companyId, companyName, password,getLoginUserID(session));
+		String json = JSON.toJSONString(response);
+		System.out.print(json);
+		return json;
+	}
 	
 }

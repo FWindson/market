@@ -44,6 +44,14 @@ var globalBasicData = [ {
 	domain : 'commision_applicant_type',
 	code : 2,
 	label : '员工'
+},{
+	domain : 'company_status',
+	code : 1,
+	label : '正常'
+},{
+	domain : 'company_status',
+	code : 2,
+	label : '解除合作'
 }];
 
 // 产品性质
@@ -54,6 +62,8 @@ var BasicData_GoodsStatus = "goods_status";
 var BasicData_SalesStatus = "sales_status";
 // 佣金记录获得者类型
 var BasicData_CommisionApplicantType = "commision_applicant_type";
+// 公司状态
+var BasicData_CompanyStatus = "company_status";
 
 function getBasicDataLabel(paramDomain, paramCode) {
 	var result = '';

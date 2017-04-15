@@ -35,6 +35,14 @@ public class BasicDataUtil {
 	 * 申请者类型-销售员
 	 */
 	public final static int ApplicantType_Sales = 2;
+	/**
+	 * 公司状态-正常
+	 */
+	public final static int CompanyStatus_Normal = 1;
+	/**
+	 * 公司状态-终止合作
+	 */
+	public final static int CompanyStatus_Terminate = 2;
 	
 	/**
 	 * 产品性质

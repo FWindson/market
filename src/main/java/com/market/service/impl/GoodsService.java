@@ -60,7 +60,7 @@ public class GoodsService implements IGoodsService{
 
 	@Override
 	public PageDataModel getList(int pageIndex,int pageSize,String keyword,String orderby) {
-		List<Goods> listGoods = goodsMapper.selectMany(pageIndex-1,pageSize,keyword,orderby); 
+		List<Goods> listGoods = goodsMapper.selectMany(pageIndex,pageSize,keyword,orderby); 
 		int goodsTotal = goodsMapper.selectManyCount(keyword);
 		PageDataModel pageDataModel = PageDataModel.buildSuccess(goodsTotal, listGoods);
 		return pageDataModel;
@@ -68,8 +68,7 @@ public class GoodsService implements IGoodsService{
 
 	@Override
 	public List<Goods> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return goodsMapper.selectAll();
 	}
 
 	@Override

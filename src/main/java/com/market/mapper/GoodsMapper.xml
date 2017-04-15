@@ -93,12 +93,12 @@
 	  		order by create_time desc 
 	  	</otherwise>
   	</choose>
-  	limit #{pageSize} offset #{pageIndex} 
+  	limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize} 
   </select>
   <select id="selectManyCount" resultType="java.lang.Integer">
   	select count(*) from goods 
   	where is_deleted != true
-  	<if test="keyword != null or keyword != ''">
+  	<if test="keyword != null and keyword != ''">
   		and name like CONCAT('%',#{keyword},'%') 
   	</if>
   </select>
@@ -106,6 +106,7 @@
     select id, name, price, status, stock, intro, description, create_time, create_by, 
     update_time, update_by, is_deleted
     from goods
-    where is_deleted != false
+    where is_deleted != true
+    order by create_time desc
   </select>
 </mapper>

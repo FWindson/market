@@ -63,9 +63,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">收入管理</span></a>                        
                         <ul>
-                        	<li><a href="<%=basePath%>admin/goods_list" target="framex"><span class="fa fa-magic"></span>商品列表</a></li>
-                        	<li><a href="<%=basePath%>admin/goods_add" target="framex"><span class="fa fa-magic"></span>新建商品</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>编辑商品</a></li>
+                        	<li><a href="<%=basePath%>admin/goods_list" target="framex"><span class="fa fa-magic"></span>佣金收入明细</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">

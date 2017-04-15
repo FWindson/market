@@ -125,6 +125,33 @@ public class AdminController {
 		return "admin/product_edit";
 	}
 	
+	/**
+	 * 公司列表
+	 * @return
+	 */
+	@RequestMapping("/company_list")
+	public String companyList(){
+		return "admin/company_list";
+	}
+
+	/**
+	 * 添加公司
+	 * @return
+	 */
+	@RequestMapping("/company_add")
+	public String companyAdd(){
+		return "admin/company_add";
+	}
 	
+	/**
+	 * 编辑公司
+	 * @return
+	 */
+	@RequestMapping("/company_edit")
+	public String companyEdit(String companyId,
+			Model model){
+		model.addAttribute("companyId", companyId);
+		return "admin/company_edit";
+	}
 	
 }
