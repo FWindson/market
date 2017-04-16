@@ -33,6 +33,7 @@ import com.market.service.impl.CommisionConfigurationService;
 import com.market.service.impl.CompanyService;
 import com.market.service.impl.GoodsProductRelationService;
 import com.market.service.impl.GoodsService;
+import com.market.service.impl.OrderService;
 import com.market.utils.LoggerUtil;
 import com.market.utils.SessionKeyUtil;
 import com.market.vo.GoodsEditModel;
@@ -58,6 +59,8 @@ public class AdminApiController {
 	private CompanyService companyService;
 	@Autowired
 	private CommisionConfigurationService commisionConfigurationService;
+	@Autowired
+	private OrderService orderService;
 	
 	
 	/**
@@ -287,6 +290,28 @@ public class AdminApiController {
 	public String updateCompany(String companyId,String companyName,String password,HttpSession session) {
 		ResponseModel response = companyService.updateCompany(companyId, companyName, password,getLoginUserID(session));
 		String json = JSON.toJSONString(response);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getOrders", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getOrders(int pageIndex,int pageSize,String status,String keyword,String orderby){
+		short statusCode = 0;
+		if (status != null && status != "") {
+			statusCode = Short.parseShort(status);
+		}
+		PageDataModel pageDataModel = orderService.getOrders(pageIndex, pageSize, statusCode, keyword, orderby);
+		String json = JSON.toJSONString(pageDataModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getCompleteOrder", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getCompleteOrder(String orderId) {
+		ResponseModel responseModel = orderService.getCompleteOrder(orderId);
+		String json = JSON.toJSONString(responseModel);
 		System.out.print(json);
 		return json;
 	}

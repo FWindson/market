@@ -56,6 +56,10 @@ public class BasicDataUtil {
 	 * 申请者类型
 	 */
 	public final static String Applicant_Type = "applicant_type";
+	/**
+	 * 订单状态
+	 */
+	public final static String Order_Status = "order_status";
 	
 	/**
 	 * 基础数据列表（内存里）

@@ -24,4 +24,7 @@ public interface CustomerMapper {
     		@Param("orderby")String orderby);
     
     int selectCountBySales(@Param("salesId")String salesId,@Param("keyword")String keyword);
+    
+    List<Customer> selectInPrimaryKeys(List<String> customerIds);
+    
 }

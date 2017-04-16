@@ -154,4 +154,17 @@ public class AdminController {
 		return "admin/company_edit";
 	}
 	
+	@RequestMapping("order_list")
+	public String orderList(){
+		return "admin/order_list";
+	}
+	
+	@RequestMapping("order_edit")
+	public String orderEdit(String orderId,
+			Model model) {
+		model.addAttribute("orderId",orderId);
+		model.addAttribute("orderStatus",BasicDataUtil.getBasicDataByDomain(BasicDataUtil.Order_Status));
+		return "admin/order_edit";
+	}
+	
 }

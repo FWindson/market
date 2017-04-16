@@ -70,8 +70,8 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">订单管理</span></a>                        
                         <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>订单列表</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>消费券列表</a></li>
+                        	<li><a href="<%=basePath%>admin/order_list" target="framex"><span class="fa fa-magic"></span>订单列表</a></li>
+                        	<li><a href="<%=basePath%>admin/shopping_ticket_list" target="framex"><span class="fa fa-magic"></span>消费券列表</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">

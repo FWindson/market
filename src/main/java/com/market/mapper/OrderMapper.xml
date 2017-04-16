@@ -38,8 +38,8 @@
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select id, code, status, total_price, customer_id, create_time
-		from order
-		where id = #{id,jdbcType=VARCHAR}
+		from "order"
+		where id = #{id,jdbcType=VARCHAR}::uuid
 	</select>
 
 	<select id="selectAll" resultMap="BaseResultMap">
@@ -68,6 +68,44 @@
 		<foreach item="item" index="index" collection="list" open="("  separator="," close=")">
 			#{item}::uuid
 		</foreach>
+	</select>
+
+	<select id="selectMany" resultMap="BaseResultMap">
+		select o.* 
+		from "order" as o
+		left join customer as c on o.customer_id = c.id
+		where true 
+		<if test="status != 0">
+			and status = #{status}
+		</if>
+		<if test="keyword != null and keyword != ''">
+			and code like CONCAT('%',keyword,'%') 
+			or c.name like CONCAT('%',keyword,'%') 
+		</if>
+		<choose>
+			<when test="orderby != null and orderby != ''">
+				order by orderby
+			</when>
+			<otherwise>
+				order by create_time desc
+			</otherwise>
+		</choose>
+		limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize}
+	</select>
+
+	<select id="selectManyCount" resultType="java.lang.Integer">
+		select count(o.*) 
+		from "order" as o
+		where true
+		<if test="status != 0">
+			and status = #{status}
+		</if>
+		<if test="keyword != null and keyword != ''">
+			and  (
+			code like CONCAT('%',keyword,'%') 
+			or c.name like CONCAT('%',keyword,'%')
+		)	 
+		</if>
 	</select>
 
 </mapper>

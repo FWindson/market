@@ -16,4 +16,6 @@ public interface OrderDetailMapper {
     int updateByPrimaryKey(OrderDetail record);
     
     List<OrderDetail> selectInPrimaryKeys(List<String> listPrimaryKeys);
+    
+    List<OrderDetail> selectByOrderId(String orderId);
 }

@@ -52,6 +52,54 @@ var globalBasicData = [ {
 	domain : 'company_status',
 	code : 2,
 	label : '解除合作'
+},{
+	domain : 'order_status',
+	code : 1,
+	label : '待确认'
+}
+,{
+	domain : 'order_status',
+	code : 2,
+	label : '待支付'
+}
+,{
+	domain : 'order_status',
+	code : 3,
+	label : '已支付'
+}
+,{
+	domain : 'order_status',
+	code : 4,
+	label : '待发货'
+}
+,{
+	domain : 'order_status',
+	code : 5,
+	label : '待收货'
+}
+,{
+	domain : 'order_status',
+	code : 6,
+	label : '已收货'
+}
+,{
+	domain : 'order_status',
+	code : 7,
+	label : '待退款'
+}
+,{
+	domain : 'order_status',
+	code : 8,
+	label : '已退款'
+}
+,{
+	domain : 'order_status',
+	code : 9,
+	label : '已取消'
+},{
+	domain : 'order_influence_calculate_type',
+	code : 1,
+	label : '优惠码'
 }];
 
 // 产品性质
@@ -64,6 +112,10 @@ var BasicData_SalesStatus = "sales_status";
 var BasicData_CommisionApplicantType = "commision_applicant_type";
 // 公司状态
 var BasicData_CompanyStatus = "company_status";
+// 订单状态
+var BasicData_OrderStatus = "order_status";
+// 订单结算影响类型
+var BasicData_OrderInfluenceCalculateType = "order_influence_calculate_type";
 
 function getBasicDataLabel(paramDomain, paramCode) {
 	var result = '';
