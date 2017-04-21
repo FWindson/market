@@ -14,43 +14,55 @@ public class BasicDataUtil {
 	/**
 	 * 商品状态-初始化
 	 */
-	public final static int GoodsStatus_Init = 1;
+	public final static Short GoodsStatus_Init = 1;
 	/**
 	 * 商品状态-即将上市
 	 */
-	public final static int GoodsStatus_CommingSoon = 2;
+	public final static Short GoodsStatus_CommingSoon = 2;
 	/**
 	 * 商品状态-上架
 	 */
-	public final static int GoodsStatus_Shelve = 3;
+	public final static Short GoodsStatus_Shelve = 3;
 	/**
 	 * 商品状态-下架
 	 */
-	public final static int GoodsStatus_OffShelve = 4;
+	public final static Short GoodsStatus_OffShelve = 4;
 	/**
 	 * 申请者类型-公司
 	 */
-	public final static int ApplicantType_Company = 1;
+	public final static Short ApplicantType_Company = 1;
 	/**
 	 * 申请者类型-销售员
 	 */
-	public final static int ApplicantType_Sales = 2;
+	public final static Short ApplicantType_Sales = 2;
+	/**
+	 * 销售员申请状态-审核中
+	 */
+	public final static Short SalesApplyStatus_Checking = 1;
+	/**
+	 * 销售员申请状态-通过
+	 */
+	public final static Short SalesApplyStatus_Accepted = 2;
+	/**
+	 * 销售员申请状态-拒绝
+	 */
+	public final static Short SalesApplyStatus_Refused = 3;
 	/**
 	 * 公司状态-正常
 	 */
-	public final static int CompanyStatus_Normal = 1;
+	public final static Short CompanyStatus_Normal = 1;
 	/**
 	 * 公司状态-终止合作
 	 */
-	public final static int CompanyStatus_Terminate = 2;
+	public final static Short CompanyStatus_Terminate = 2;
 	/**
 	 * 佣金配置对象-公司
 	 */
-	public final static int CommisionApplicantType_Company = 1;
+	public final static Short CommisionApplicantType_Company = 1;
 	/**
 	 * 佣金配置对象-员工
 	 */
-	public final static int CommisionApplicantType_Sales = 2;
+	public final static Short CommisionApplicantType_Sales = 2;
 	
 	/**
 	 * 产品性质

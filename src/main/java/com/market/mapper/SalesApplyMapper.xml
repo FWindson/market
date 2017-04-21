@@ -32,23 +32,23 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.market.domain.SalesApply">
     update sales_apply
-    set user_id = #{userId,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=VARCHAR}::uuid,
       name = #{name,jdbcType=VARCHAR},
       mobile_number = #{mobileNumber,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR}::uuid,
       status = #{status,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      handler_by = #{handlerBy,jdbcType=VARCHAR},
+      handler_by = #{handlerBy,jdbcType=VARCHAR}::uuid,
       is_deleted = #{isDeleted,jdbcType=BIT}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, user_id, name, mobile_number, comment, company_id, status, create_time, 
     update_time, handler_by, is_deleted
     from sales_apply
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, user_id, name, mobile_number, comment, company_id, status, create_time, 
@@ -62,6 +62,51 @@
     	and name CONCAT('%',#{keyword},'%') 
     </if>
     limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize}
+  </select>
+  <select id="selectMany" resultMap="BaseResultMap">
+  	select * 
+  	from sales_apply
+  	where is_deleted != true  
+  	<if test="companyId != null and companyId != ''">
+  		and companyId = #{companyId}::uuid
+  	</if>
+  	<if test="status != null">
+  		and status in 
+	  	<foreach collection="array" item="item" open="(" separator="," close=")">
+	  		#{item}
+	  	</foreach>
+  	</if>
+  	<if test="keyword != null and keyword != ''">
+  		and name like CONCAT('%',#{keyword},'%')
+  	</if>
+  	<choose>
+  		<when test="orderby != null and orderby != ''">
+  			order by #{orderby}
+  		</when>
+  		<otherwise>
+  			order by create_time desc
+  		</otherwise>
+  	</choose>
+  	<if test="pageIndex != null and pageSize != null">
+  		limit #{pageSize} offset (#{pageIndex}-1)*#{pageSize}
+  	</if>
+  </select>
+  <select id="selectManyCount" resultType="java.lang.Integer">
+  	select count(*) 
+  	from sales_apply
+  	where is_deleted != true  
+  	<if test="companyId != null and companyId != ''">
+  		and companyId = #{companyId}::uuid
+  	</if>
+  	<if test="status != null">
+  		and status in 
+	  	<foreach collection="array" item="item" open="(" separator="," close=")">
+	  		#{item}
+	  	</foreach>
+  	</if>
+  	<if test="keyword != null and keyword != ''">
+  		and name like CONCAT('%',#{keyword},'%')
+  	</if>
   </select>
   <select id="selectInPrimaryKeys">
   	select * 

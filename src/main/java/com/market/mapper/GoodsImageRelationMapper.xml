@@ -15,16 +15,16 @@
   <insert id="insert" parameterType="com.market.domain.GoodsImageRelation">
     insert into goods_image_relation (id, goods_id, image_id, 
       create_time, is_deleted)
-    values (#{id,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, #{imageId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}::uuid, #{goodsId,jdbcType=VARCHAR}::uuid, #{imageId,jdbcType=VARCHAR}::uuid, 
       #{createTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.market.domain.GoodsImageRelation">
     update goods_image_relation
-    set goods_id = #{goodsId,jdbcType=VARCHAR},
-      image_id = #{imageId,jdbcType=VARCHAR},
+    set goods_id = #{goodsId,jdbcType=VARCHAR}::uuid,
+      image_id = #{imageId,jdbcType=VARCHAR}::uuid,
       create_time = #{createTime,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=BIT}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, goods_id, image_id, create_time, is_deleted
@@ -39,5 +39,16 @@
   	select * 
   	from goods_image_relation
   	where goods_id = #{goodsId}::uuid
+  </select>
+  <select id="selectMany" resultMap="BaseResultMap">
+  	select * 
+  	from goods_image_relation
+  	where is_deleted != true 
+  	<if test="goodsId != null and goodsId != ''">
+  		and goods_id = #{goodsId}::uuid
+  	</if>
+  	<if test="imageId != null and imageId != ''">
+  		and image_id = #{imageId}::uuid
+  	</if>
   </select>
 </mapper>

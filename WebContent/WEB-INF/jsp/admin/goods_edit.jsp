@@ -26,95 +26,111 @@
 		<div class="page-title">
 			<h2>编辑商品</h2>
 		</div>
-		<div class="col-md-12">
-			<form class="form-horizontal" role="form" id="form-goods">
-				<input type="hidden" name="id" value="${goodsId}" id="input-goodsid">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<h4 class="col-md-1">商品名</h4>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="name">
+		<div class="row">
+			<div class="col-md-6">
+				<form class="form-horizontal" role="form" id="form-goods">
+					<input type="hidden" name="id" value="${goodsId}" id="input-goodsid">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<h4 class="col-md-1">商品名</h4>
+									<div class="col-md-8">
+										<input type="text" class="form-control" name="name">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<h4 class="col-md-1">价格</h4>
-								<div class="col-md-4">
-									<input type="number" class="form-control" name="price">
+								<div class="form-group">
+									<h4 class="col-md-1">价格</h4>
+									<div class="col-md-4">
+										<input type="number" class="form-control" name="price">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<h4 class="col-md-1">市场价</h4>
-								<div class="col-md-4">
-									<input type="number" class="form-control" name="markePrice">
+								<div class="form-group">
+									<h4 class="col-md-1">市场价</h4>
+									<div class="col-md-4">
+										<input type="number" class="form-control" name="markePrice">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<h4 class="col-md-1">状态</h4>
-								<div class="col-md-4">
-									<select class="form-control select" name="status">
-										<!-- <option>初始化</option>
+								<div class="form-group">
+									<h4 class="col-md-1">状态</h4>
+									<div class="col-md-4">
+										<select class="form-control select" name="status">
+											<!-- <option>初始化</option>
 										<option>即将上市</option>
 										<option>上架</option>
 										<option>下架</option> -->
-										<c:forEach items="${goodsStatus}" var="status">
-											<option value="${status.code}">${status.label}</option>
-										</c:forEach>
-									</select>
+											<c:forEach items="${goodsStatus}" var="status">
+												<option value="${status.code}">${status.label}</option>
+											</c:forEach>
+										</select>
+									</div>
 								</div>
+							</form>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-6">
+								<h4>商品简介</h4>
+								<textarea class="summernote" id="textarea-intro" name="intro"></textarea>
+							</div>
+							<div class="col-md-6">
+								<h4>商品详情</h4>
+								<textarea class="summernote" id="textarea-desc" name="description"></textarea>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- 图片上传 开始 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3>
+							<span class="fa fa-download"></span> 商品图片
+						</h3>
+						<p style="color:red;">图片的上传和删除是即使生效的，请谨慎操作！！！</p>
+						<%-- <form action="<%=basePath%>api/admin/updateGoodsImage?goodsId=${goodsId}" class="dropzone dz-clickable">
+							<div class="dz-default dz-message">
+								<span>点击此处上传图片</span>
+							</div>
+						</form> --%>
+						<form action="<%=basePath%>api/admin/uploadGoodsImage?goodsId=${goodsId}" class="dropzone dz-clickable" id="goods-dropzone">
+							<div class="dz-default dz-message">
+								<span>点击此处上传图片</span>
 							</div>
 						</form>
 					</div>
+				</div>
+			</div>
+			<!-- 图片上传 结束 -->
+		</div>
+		<div class="row">
+			<!-- 已选产品 开始 -->
+			<div class="col-md-6" id="panel-product-seleted"></div>
+			<!-- 已选产品 结束 -->
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">选择要添加的产品</h3>
+					</div>
 					<div class="panel-body">
-						<div class="col-md-6">
-							<h4>商品简介</h4>
-							<textarea class="summernote" id="textarea-intro" name="intro"></textarea>
-						</div>
-						<div class="col-md-6">
-							<h4>商品详情</h4>
-							<textarea class="summernote" id="textarea-desc" name="description"></textarea>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="col-md-12" id="panel-product-seleted">
-			<!-- <div class="panel panel-primary">
-				<div class="panel-body">
-					<div class="col-md-9">
-						<h3 style="margin:0;line-height:28px;">速霸1000四升保养</h3>
-					</div>
-					<div class="col-md-2">
-						<input type="number" class="form-control" placeHolder="数量" pid="abc" name="product-item" />
-					</div>
-					<div class="col-md-1">
-						<div class="btn btn-danger pull-right btn-remove-product">删除</div>
-					</div>
-				</div>
-			</div> -->
-		</div>
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">选择要添加的产品</h3>
-				</div>
-				<div class="panel-body">
-					<ul class="list-group border-bottom">
-						<!-- <li class="list-group-item">速霸1000四升保养</li>
+						<ul class="list-group border-bottom">
+							<!-- <li class="list-group-item">速霸1000四升保养</li>
 						<li class="list-group-item">速霸1000五升保养</li>
 						<li class="list-group-item">速霸2000四升保养</li>
 						<li class="list-group-item">速霸2000五升保养</li>
 						<li class="list-group-item">速霸2000六升保养</li>
 						<li class="list-group-item">速霸2000七升保养</li>
 						<li class="list-group-item">速霸2000七升保养</li> -->
-						<c:forEach items="${products}" var="product">
-							<a href="javascript:void(0)" class="list-group-item list-item-product" pid="${product.id}">${product.name}</a>
-						</c:forEach>
-					</ul>
+							<c:forEach items="${products}" var="product">
+								<a href="javascript:void(0)" class="list-group-item list-item-product" pid="${product.id}">${product.name}</a>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
 		<div class="col-md-12">
 			<div class="btn btn-success btn-lg pull-right" id="btn-submit">保存</div>
 		</div>
@@ -134,18 +150,20 @@
 		</div>
 	</div>
 	<div class="message-box message-box-danger animated fadeIn" id="message-box-danger">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-times"></span> Danger</div>
-                    <div class="mb-content" id="mb-content-danger">
-                        <span class="fa fa-check"></span> 失败
-                    </div>
-                    <div class="mb-footer">
-                        <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="mb-container">
+			<div class="mb-middle">
+				<div class="mb-title">
+					<span class="fa fa-times"></span> Danger
+				</div>
+				<div class="mb-content" id="mb-content-danger">
+					<span class="fa fa-check"></span> 失败
+				</div>
+				<div class="mb-footer">
+					<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- end s提示框 -->
 
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>               --%>
@@ -153,7 +171,7 @@
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap.min.js"></script>
-
+	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/dropzone/dropzone.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-select.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/summernote/summernote.js"></script>
 

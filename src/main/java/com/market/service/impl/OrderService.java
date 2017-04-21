@@ -116,7 +116,7 @@ public class OrderService {
 			orderDetailModel.setOriginalPrice(detail.getOriginalPrice());
 			orderDetailModel.setTotalPrice(detail.getTotalPrice());
 			
-			LinqArrayList<GoodsImageRelation> listGoodsImageRelations = new LinqArrayList<>(goodsImageRelationMapper.selectByGoodsId(detail.getGoodsId()));
+			LinqArrayList<GoodsImageRelation> listGoodsImageRelations = new LinqArrayList<>(goodsImageRelationMapper.selectMany(detail.getGoodsId(),""));
 			List<String> imageIds = listGoodsImageRelations.select(relation -> relation.getImageId());
 			LinqArrayList<Image> images = new LinqArrayList<>();
 			if (imageIds.size() > 0) {

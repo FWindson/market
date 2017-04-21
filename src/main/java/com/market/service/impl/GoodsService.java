@@ -9,14 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.market.dao.GoodsImageRelationMapper;
 import com.market.dao.GoodsMapper;
 import com.market.dao.GoodsProductRelationMapper;
+import com.market.dao.ImageMapper;
 import com.market.domain.Goods;
+import com.market.domain.GoodsImageRelation;
 import com.market.domain.GoodsProductRelation;
+import com.market.domain.Image;
 import com.market.requestmodel.GoodsForm;
 import com.market.requestmodel.GoodsFormProduct;
 import com.market.service.IGoodsService;
+import com.market.utils.LoggerUtil;
+import com.market.vo.GoodsEditModel;
 import com.market.vo.PageDataModel;
+import com.market.vo.ProductOfGoodsEditModel;
 import com.market.vo.ResponseModel;
 
 @Service("goodsService")
@@ -26,6 +33,11 @@ public class GoodsService implements IGoodsService{
 	private GoodsMapper goodsMapper;
 	@Autowired
 	private GoodsProductRelationMapper goodsProductRelationMapper;
+	@Autowired
+	private GoodsImageRelationMapper goodsImageRelationMapper;
+	@Autowired
+	private ImageMapper imageMapper;
+	
 
 	@Transactional
 	public int addGoods(GoodsForm goodsForm,String admin) {
@@ -111,6 +123,44 @@ public class GoodsService implements IGoodsService{
 		}
 		influence += goodsProductRelationMapper.insert(listRelation);
 		return influence;
+	}
+
+	@Override
+	public ResponseModel getGoodsEditModel(String goodsId) {
+		GoodsEditModel goodEditModel = new GoodsEditModel();
+		// 商品
+		Goods goods = this.getSingle(goodsId);
+		// 包含产品
+		List<ProductOfGoodsEditModel> products = goodsProductRelationMapper.selectProudctsByGoodsId(goodsId);
+		List<GoodsImageRelation> listGoodsImageRelation =  goodsImageRelationMapper.selectMany(goodsId, "");
+		// 商品图片
+		List<Image> listImage = new ArrayList<Image>();
+		for(GoodsImageRelation relation : listGoodsImageRelation) {
+			Image image = imageMapper.selectByPrimaryKey(relation.getImageId());
+			listImage.add(image);
+		}
+		goodEditModel.goods = goods;
+		goodEditModel.products = products;
+		goodEditModel.images = listImage;
+		ResponseModel responseModel = ResponseModel.buildSuccess(goodEditModel);
+		return responseModel;
+	}
+
+	@Override
+	public ResponseModel deleteGoods(String goodsId, String admin) {
+		ResponseModel responseModel = null;
+		try {
+			Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+			goods.setIsDeleted(true);
+			goods.setUpdateTime(new Date());
+			goods.setUpdateBy(admin);
+			goodsMapper.updateByPrimaryKey(goods);
+			responseModel = ResponseModel.buildSuccess();
+		} catch (Exception e) {
+			LoggerUtil.getLogger(this).error("删除商品失败",e);
+			responseModel = ResponseModel.buildFailed(e.getMessage());
+		}
+		return responseModel;
 	}
 	
 }

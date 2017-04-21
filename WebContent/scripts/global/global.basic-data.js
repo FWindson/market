@@ -100,6 +100,18 @@ var globalBasicData = [ {
 	domain : 'order_influence_calculate_type',
 	code : 1,
 	label : '优惠码'
+},{
+	domain : 'sales_apply_status',
+	code : 1,
+	label : '审核中'
+},{
+	domain : 'sales_apply_status',
+	code : 2,
+	label : '通过'
+},{
+	domain : 'sales_apply_status',
+	code : 3,
+	label : '拒绝'
 }];
 
 // 产品性质
@@ -116,6 +128,8 @@ var BasicData_CompanyStatus = "company_status";
 var BasicData_OrderStatus = "order_status";
 // 订单结算影响类型
 var BasicData_OrderInfluenceCalculateType = "order_influence_calculate_type";
+// 销售员申请状态
+var BasicData_SalesApplyStatus = "sales_apply_status";
 
 function getBasicDataLabel(paramDomain, paramCode) {
 	var result = '';

@@ -18,13 +18,24 @@ public interface SalesApplyMapper {
 
     int updateByPrimaryKey(SalesApply record);
     
-    List<SalesApply> selectByCompany(@Param("companyId")String companyId,
-    		@Param("pageIndex")int pageIndex,
-    		@Param("pageSize")int pageSize,
-    		@Param("keyword")String keyword);
+//    List<SalesApply> selectByCompany(@Param("companyId")String companyId,
+//    		@Param("pageIndex")int pageIndex,
+//    		@Param("pageSize")int pageSize,
+//    		@Param("keyword")String keyword);
+//    
+//    @Select("select count(*) from sales_apply where company_id = #{companyId}::uuid")
+//    int selectCountByCompany(@Param("companyId")String companyId,
+//    		@Param("keyword")String keyword);
     
-    @Select("select count(*) from sales_apply where company_id = #{companyId}::uuid")
-    int selectCountByCompany(@Param("companyId")String companyId,
+    List<SalesApply> selectMany(@Param("companyId")String companyId,
+    		@Param("status")Short[] status,
+    		@Param("keyword")String keyword,
+    		@Param("orderby")String orderby,
+    		@Param("pageIndex")Integer pageIndex,
+    		@Param("pageSize")Integer pageSize);
+    
+    int selectManyCount(@Param("companyId")String companyId,
+    		@Param("status")Short[] status,
     		@Param("keyword")String keyword);
     
     List<SalesApply> selectInPrimaryKeys(List<String> salesApplyIds);

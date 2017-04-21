@@ -95,6 +95,23 @@
 			</div>
 		</div>
 	</div>
+	<div class="message-box message-box-warning animated fadeIn" id="message-box-warning">
+		<input type="hidden" id="input-goods-to-delete">
+		<div class="mb-container">
+			<div class="mb-middle">
+				<div class="mb-title">
+					<span class="fa fa-warning"></span> 警告
+				</div>
+				<div class="mb-content">
+					<p>即将删除商品，确定删除？</p>
+				</div>
+				<div class="mb-footer">
+					<button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
+					<button class="btn btn-primary btn-lg pull-right" style="margin-right:8px;" id="btn-delete-goods-confirm">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- end s提示框 -->
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>  --%>
 

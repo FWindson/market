@@ -19,7 +19,7 @@
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
 		<li><a href="#">销售员管理</a></li>
-		<li class="active">销售员列表</li>
+		<li class="active">销售员申请列表</li>
 	</ul>
 	<!-- END 当前路径 -->
 
@@ -28,7 +28,7 @@
 		<!-- START DATATABLE EXPORT -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">销售员列表</h3>
+				<h3 class="panel-title">销售员申请列表</h3>
 				<div class="btn-group pull-right">
 					<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-bars"></i> Export Data
@@ -42,11 +42,11 @@
 			</div>
 			<div class="panel-body panel-body-table">
 				<div class="table-responsive">
-					<table class="table table-bordered table-striped table-actions" id="table-sales">
+					<table class="table table-bordered table-striped table-actions" id="table-sales-apply">
 						<thead>
 							<tr>
 								<th>姓名</th>
-								<th>所属公司</th>
+								<th>加入公司</th>
 								<th>手机号</th>
 								<th>状态</th>
 								<th width="250">创建时间</th>
@@ -109,7 +109,7 @@
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
 	
-	<script type="text/javascript" src="<%=basePath%>scripts/admin/sales_list.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/admin/sales_apply_list.js"></script>
 
 </body>
 </html>

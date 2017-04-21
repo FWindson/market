@@ -194,5 +194,17 @@ public class AdminController {
 		model.addAttribute("salesId", salesId);
 		return "admin/sales_edit";
 	}
+
+	@RequestMapping("sales_apply_list")
+	public String salesApplys() {
+		return "admin/sales_apply_list";
+	}
+	
+	@RequestMapping("sales_apply_edit")
+	public String salesApplyEdit(String salesApplyId,
+			Model model) {
+		model.addAttribute("salesApplyId", salesApplyId);
+		return "admin/sales_apply_edit";
+	}
 	
 }

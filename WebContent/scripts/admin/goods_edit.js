@@ -1,43 +1,13 @@
 $(function(){
 	var goodsId = $('#input-goodsid').val();
 
+	Dropzone.autoDiscover = false;
+	var goodsImageDropzone = null;
+	// 初始化图片插件
+	initDropzone();
+
 	$('#btn-submit').click(function(){
-		var goodsForm = $('#form-goods').serializeJSON();
-		var textareaIntroVal = $('#textarea-intro').code();
-		var textareaDescVal = $('#textarea-desc').code();
-		goodsForm.intro = textareaIntroVal;
-		goodsForm.description = textareaDescVal;
-		var productArray = [];
-		$('input[name="product-item"]').each(function(){
-			var quantity = $(this).val();
-			var pid = $(this).attr('pid');
-			productArray.push({
-				id : pid,
-				quantity : quantity
-			});
-		});
-		goodsForm.products = productArray;
-		
-		$.ajax({
-			url : HOST + 'api/admin/updateGoods',
-			type : 'POST',
-			data : goodsForm,
-			dataType: 'json',  
-			contentType:'application/json;charset=UTF8',
-			data:JSON.stringify(goodsForm),
-			success : function(response){
-				if(response.status == 200) {
-					popSuccessMessageBox();
-				}
-				else {
-					popErrorMessageBox(response.message);
-				}
-			},
-			error : function(res){
-				popErrorMessageBox('请查看控制台');
-				console.log(res);
-			}
-		});
+		submit();
 	});
 
 	$('.list-item-product').click(function(){
@@ -80,6 +50,18 @@ $(function(){
 			console.log('商品详情',response);
 			var goods = response.result.goods;
 			var products = response.result.products;
+			var images = response.result.images;
+			console.log(goodsImageDropzone);
+			for(var i = 0; i < images.length; i++) {
+				var imageUrl = HOST + images[i].relativePath;
+				var mockFile = { 
+					name: "Filename", 
+					imageId : images[i].id,
+					size: ''
+				};
+				goodsImageDropzone.emit("addedfile", mockFile);
+				goodsImageDropzone.emit("thumbnail", mockFile, imageUrl);
+			}
 			var p_html = '';
 			// 产品列
 			for(var i = 0;i<products.length;i++) {
@@ -114,5 +96,73 @@ $(function(){
 		}
 	});
 
+	function initDropzone() {
+		 goodsImageDropzone = new Dropzone("#goods-dropzone");
+		 // 上传结束
+		 goodsImageDropzone.on("success", function (file,response) {
+			 if (response.status == 200) {
+				file.imageId = response.result[0].id;
+			 }
+         });
+         // 删除文件
+		 goodsImageDropzone.on("removedfile", function (file) {
+             var imageId = file.imageId;
+             $.ajax({
+            	 url : HOST + 'api/admin/deleteGoodsImage?imageId=' + imageId,
+            	 type : 'POST',
+            	 success : function(response) {
+            		 if(response.status == 400) {
+            			 alert('删除图片异常');
+            			 console.log(response);
+            		 }
+            	 },
+            	 error : function(res) {
+            		 alert('删除图片异常');
+            		 console.log(res);
+            	 }
+             });
+         });
+	}
+	
+	// 保存编辑结果
+	function submit() {
+		var goodsForm = $('#form-goods').serializeJSON();
+		var textareaIntroVal = $('#textarea-intro').code();
+		var textareaDescVal = $('#textarea-desc').code();
+		goodsForm.intro = textareaIntroVal;
+		goodsForm.description = textareaDescVal;
+		var productArray = [];
+		$('input[name="product-item"]').each(function(){
+			var quantity = $(this).val();
+			var pid = $(this).attr('pid');
+			productArray.push({
+				id : pid,
+				quantity : quantity
+			});
+		});
+		goodsForm.products = productArray;
+		
+		$.ajax({
+			url : HOST + 'api/admin/updateGoods',
+			type : 'POST',
+			data : goodsForm,
+			dataType: 'json',  
+			contentType:'application/json;charset=UTF8',
+			data:JSON.stringify(goodsForm),
+			success : function(response){
+				if(response.status == 200) {
+					popSuccessMessageBox();
+				}
+				else {
+					popErrorMessageBox(response.message);
+				}
+			},
+			error : function(res){
+				popErrorMessageBox('请查看控制台');
+				console.log(res);
+			}
+		});
+	}
+	
 	
 });

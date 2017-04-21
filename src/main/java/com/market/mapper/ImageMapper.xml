@@ -20,7 +20,7 @@
     insert into image (id, file_name, suffix, 
       relative_path, create_time, create_by, 
       is_deleted)
-    values (#{id,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{suffix,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}::uuid, #{fileName,jdbcType=VARCHAR}, #{suffix,jdbcType=VARCHAR}, 
       #{relativePath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
       #{isDeleted,jdbcType=BIT})
   </insert>
@@ -32,7 +32,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=VARCHAR},
       is_deleted = #{isDeleted,jdbcType=BIT}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, file_name, suffix, relative_path, create_time, create_by, is_deleted

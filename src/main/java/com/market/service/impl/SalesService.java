@@ -53,11 +53,14 @@ public class SalesService {
 	 * @param orderby
 	 * @return
 	 */
-	public PageDataModel getSales(String companyId, Short status, int pageIndex, int pageSize, String keyword,
+	public PageDataModel getSales(String companyId, Short status, Integer pageIndex, Integer pageSize, String keyword,
 			String orderby) {
-		List<Sales> listSales = salesMapper.selectMany(companyId, new Short[] { status }, pageIndex, pageSize, keyword,
-				orderby);
-		int count = salesMapper.selectManyCount(companyId, new Short[] { status }, keyword);
+		Short[] arrayStatus = null;
+		if (status != null) {
+			arrayStatus = new Short[] { status };
+		}
+		List<Sales> listSales = salesMapper.selectMany(companyId,arrayStatus, pageIndex, pageSize, keyword,orderby);
+		int count = salesMapper.selectManyCount(companyId, arrayStatus, keyword);
 		PageDataModel pageDataModel = PageDataModel.buildSuccess(count, listSales);
 		return pageDataModel;
 	}

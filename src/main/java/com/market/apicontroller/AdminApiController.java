@@ -1,10 +1,16 @@
 package com.market.apicontroller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +29,7 @@ import com.alibaba.fastjson.JSON;
 import com.market.domain.CommisionConfiguration;
 import com.market.domain.Company;
 import com.market.domain.Goods;
+import com.market.domain.Image;
 import com.market.domain.Product;
 import com.market.interceptor.AdminApiAuth;
 import com.market.requestmodel.CommisionConfigurationForm;
@@ -33,12 +40,17 @@ import com.market.service.IProductService;
 import com.market.service.impl.CommisionConfigurationService;
 import com.market.service.impl.CompanyService;
 import com.market.service.impl.CustomerService;
+import com.market.service.impl.FileService;
 import com.market.service.impl.GoodsProductRelationService;
 import com.market.service.impl.GoodsService;
+import com.market.service.impl.ImageService;
 import com.market.service.impl.OrderService;
+import com.market.service.impl.SalesApplyService;
 import com.market.service.impl.SalesService;
+import com.market.utils.BasicDataUtil;
 import com.market.utils.LoggerUtil;
 import com.market.utils.SessionKeyUtil;
+import com.market.utils.UploadFileUtil;
 import com.market.vo.CompanyModel;
 import com.market.vo.CustomerViewModel;
 import com.market.vo.GoodsEditModel;
@@ -71,6 +83,12 @@ public class AdminApiController {
 	private CustomerService customerService;
 	@Autowired
 	private SalesService salesService;
+	@Autowired
+	private SalesApplyService salesApplyService;
+	@Autowired
+	private FileService fileService;
+	@Autowired
+	private ImageService imageService;
 	
 	
 	/**
@@ -83,7 +101,7 @@ public class AdminApiController {
 		if (administratorId != null) 
 			return administratorId.toString();
 		else //TODO:改为""
-			return "Windson";
+			return "58077e39-f539-4ab1-89ec-51a54acb83b8";
 	}
 	/**
 	 * 获取登录名
@@ -205,12 +223,8 @@ public class AdminApiController {
 	public String getGoodsDetail(String goodsId,
 			Model model,
 			HttpSession session){
-		Goods goods = goodsService.getSingle(goodsId);
-		List<ProductOfGoodsEditModel> products = goodsProductRelationService.getProductsOfGoods(goodsId);
-		GoodsEditModel goodEditModel = new GoodsEditModel();
-		goodEditModel.goods = goods;
-		goodEditModel.products = products;
-		String json = JSON.toJSONString(ResponseModel.buildSuccess(goodEditModel));
+		ResponseModel responseModel = goodsService.getGoodsEditModel(goodsId);
+		String json = JSON.toJSONString(responseModel);
 		System.out.println(json);
 		return json;
 	}
@@ -226,6 +240,58 @@ public class AdminApiController {
 		} catch (Exception e) {
 			responseModel = ResponseModel.buildFailed(e.getMessage());
 		}
+		String json = JSON.toJSONString(responseModel);
+		System.out.println(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/deleteGoods", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String deleteGoods(String goodsId,
+			HttpSession session) {
+		ResponseModel responseModel = null;
+		responseModel = goodsService.deleteGoods(goodsId, getLoginUserName(session));
+		String json = JSON.toJSONString(responseModel);
+		return json;
+	}
+	
+	@RequestMapping(value = "/uploadGoodsImage", method = RequestMethod.POST)
+	@ResponseBody
+	public String uploadGoodsImage(String goodsId,
+			HttpServletRequest request,
+			HttpSession session,
+			Model model) {
+		ResponseModel responseModel = null;
+		Collection<Part> parts;
+		try {
+			parts = request.getParts();
+			String absUploadFileFolderPath = request.getServletContext().getRealPath(UploadFileUtil.UploadFileFolderPath);
+			File folder = new File(absUploadFileFolderPath);
+			if (!folder.isDirectory() || !folder.exists()) {
+				folder.mkdir();
+			}
+			String absUploadFileGoodsFolderPath = absUploadFileFolderPath +  UploadFileUtil.UploadFileFolderPath_GoodsImage;
+			File goodsFolder = new File(absUploadFileGoodsFolderPath);
+			if (!goodsFolder.isDirectory() || !goodsFolder.exists()) {
+				goodsFolder.mkdir();
+			}
+			responseModel = fileService.saveFileFromParts(parts, absUploadFileGoodsFolderPath, goodsId, getLoginUserName(session));
+		} catch (IOException e) {
+			LoggerUtil.getLogger(this).error("上传商品图片异常",e);
+			e.printStackTrace();
+		} catch (ServletException e) {
+			LoggerUtil.getLogger(this).error("上传商品图片异常",e);
+			e.printStackTrace();
+		}
+		String json = JSON.toJSONString(responseModel);
+		System.out.println(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/deleteGoodsImage", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String deleteGoodsImage(String imageId) {
+		ResponseModel responseModel = imageService.deleteGoodsImage(imageId);
 		String json = JSON.toJSONString(responseModel);
 		System.out.println(json);
 		return json;
@@ -373,6 +439,44 @@ public class AdminApiController {
 	@ResponseBody()
 	public String getSalesDetail(String salesId) {
 		ResponseModel responseModel = salesService.getSalesModel(salesId);
+		String json = JSON.toJSONString(responseModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getSalesApplys", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getSalesApplys(String companyId,Short status,String keyword,String orderby,Integer pageIndex,Integer pageSize) {
+		PageDataModel pageDataModel = salesApplyService.getSalesApplys(companyId, status, keyword, orderby, pageIndex, pageSize);
+		String json = JSON.toJSONString(pageDataModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getSalesApply", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getSalesApply(String salesApplyId) {
+		ResponseModel responseModel = salesApplyService.getSalesApply(salesApplyId);
+		String json = JSON.toJSONString(responseModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/acceptSalesApply", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String acceptSalesApply(String salesApplyId,
+			HttpSession session) {
+		ResponseModel responseModel = salesApplyService.updateSalesApplyStatus(salesApplyId, BasicDataUtil.SalesApplyStatus_Accepted, getLoginUserID(session));
+		String json = JSON.toJSONString(responseModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/refuseSalesApply", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String refuseSalesApply(String salesApplyId,
+			HttpSession session) {
+		ResponseModel responseModel = salesApplyService.updateSalesApplyStatus(salesApplyId, BasicDataUtil.SalesApplyStatus_Refused, getLoginUserID(session));
 		String json = JSON.toJSONString(responseModel);
 		System.out.print(json);
 		return json;

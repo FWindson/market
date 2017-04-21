@@ -1,7 +1,13 @@
 $(function() {
+	var pagination = null;
 	var url = HOST + 'api/admin/goods?keyword=&orderby=';
 	var method = 'POST';
-	var pagination = new AtlantPagination(url, function(response) {
+	
+	$('#btn-delete-goods-confirm').click(function(){
+		deleteGoods($('#input-goods-to-delete').val());
+	});
+	
+	pagination = new AtlantPagination(url, function(response) {
 		console.log(response);
 		var _this = this;
 		var result = response.result;
@@ -28,20 +34,28 @@ $(function() {
 		});
 		$('.btn-del').click(function(){
 			var uuid = $(this).attr('uuid');
-			$.ajax({
-				url : HOST + 'api/admin/deleteGoods?uuid=' + uuid,
-				type : 'POST',
-				success : function(response){
-					if(response.status == 200){
-						$('#message-box-success').addClass('open');
-					}
-					else {
-						$('#message-box-danger').addClass('open');
-					}
-				}
-			});
-			_this.reload();
+			$('#input-goods-to-delete').val(uuid);
+			$('#message-box-warning').addClass('open');
 		});
 	}, method, null, '#table-goods-footer');
 
+
+	// 删除商品
+	function deleteGoods(goodsId){
+		$.ajax({
+			url : HOST + 'api/admin/deleteGoods?goodsId=' + goodsId,
+			type : 'POST',
+			success : function(response){
+				$('#message-box-warning').removeClass('open');
+				if(response.status == 200){
+					$('#message-box-success').addClass('open');
+					pagination.reload();
+				} else {
+					$('#message-box-danger').addClass('open');
+					console.log(response);
+				}
+			}
+		});
+	}
+	
 });
