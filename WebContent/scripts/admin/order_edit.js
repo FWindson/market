@@ -9,6 +9,7 @@ $(function(){
 			var order = response.result;
 			var basicForm = order.order;
 			var influences = order.orderInfluences;
+			debugger
 			if(influences.length == 0) {
 				$('#row-orderInfluence').hide();
 			}
@@ -17,11 +18,11 @@ $(function(){
 				var oi_html = '';
 				for(var i = 0;i < influences.length; i++){
 					oi_html +='<tr>';
-					oi_html +='<td>'+getBasicDataLabel(BasicData_OrderInfluenceCalculateType,influences[i].calculateType)+'</td>';
-					oi_html +='<td>'+influences[i].calculateValue+'</td>';
+					oi_html +='<td>'+getBasicDataLabel(BasicData_OrderInfluenceCalculateType,influences[i].influenceType)+'</td>';
+					oi_html +='<td>'+influences[i].influenceValue+'</td>';
 					oi_html +='</tr>';
 				}
-				$('table-orderInfluence-body').html(oi_html);
+				$('#table-influence-body').html(oi_html);
 			}
 			var orderDetails = order.orderDetailModels;
 			var originalPrice = 0;
@@ -44,8 +45,6 @@ $(function(){
 			$('#order-totalPrice').html(basicForm.totalPrice);
 			$('#order-oldPrice').html(originalPrice);
 			$('#order-createTime').html(new Date(basicForm.createTime).format('yyyy-MM-dd hh:mm:ss'));
-			
-			
 			
 		}
 	});

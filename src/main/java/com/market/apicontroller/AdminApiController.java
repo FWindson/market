@@ -24,6 +24,7 @@ import com.market.domain.CommisionConfiguration;
 import com.market.domain.Company;
 import com.market.domain.Goods;
 import com.market.domain.Product;
+import com.market.interceptor.AdminApiAuth;
 import com.market.requestmodel.CommisionConfigurationForm;
 import com.market.requestmodel.GoodsForm;
 import com.market.requestmodel.GoodsFormProduct;
@@ -31,15 +32,20 @@ import com.market.service.IGoodsService;
 import com.market.service.IProductService;
 import com.market.service.impl.CommisionConfigurationService;
 import com.market.service.impl.CompanyService;
+import com.market.service.impl.CustomerService;
 import com.market.service.impl.GoodsProductRelationService;
 import com.market.service.impl.GoodsService;
 import com.market.service.impl.OrderService;
+import com.market.service.impl.SalesService;
 import com.market.utils.LoggerUtil;
 import com.market.utils.SessionKeyUtil;
+import com.market.vo.CompanyModel;
+import com.market.vo.CustomerViewModel;
 import com.market.vo.GoodsEditModel;
 import com.market.vo.PageDataModel;
 import com.market.vo.ProductOfGoodsEditModel;
 import com.market.vo.ResponseModel;
+import com.market.vo.SalesModel;
 
 @Controller
 @RequestMapping("/api/admin")
@@ -61,6 +67,10 @@ public class AdminApiController {
 	private CommisionConfigurationService commisionConfigurationService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private SalesService salesService;
 	
 	
 	/**
@@ -243,7 +253,19 @@ public class AdminApiController {
 		return json;
 	}
 	
-	
+	@RequestMapping(value = "/getCompany", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getCompany(String companyId) {
+		ResponseModel responseModel = ResponseModel.buildSuccess();
+		CompanyModel companyModel = companyService.getByPrimaryKey(companyId);
+		if (companyModel != null) {
+			responseModel = ResponseModel.buildSuccess(companyModel);
+		}
+		else  {
+			responseModel = ResponseModel.buildFailed("不存在该公司");
+		}
+		return JSON.toJSONString(responseModel);
+	}
 	
 	@RequestMapping(value = "/addCompany", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
 	@ResponseBody()
@@ -269,7 +291,7 @@ public class AdminApiController {
 	
 	@RequestMapping(value = "/getCommisionsConfigurationByGoodsId", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
 	@ResponseBody()
-	public String getCommisionsConfigurationByGoodsId(String goodsId,int targetType,String targetId,String orderby) {
+	public String getCommisionsConfigurationByGoodsId(String goodsId,Short targetType,String targetId,String orderby) {
 		PageDataModel response = commisionConfigurationService.getCommisionConfigurations(goodsId, targetType, targetId,orderby);
 		String json = JSON.toJSONString(response);
 		System.out.print(json);
@@ -296,12 +318,12 @@ public class AdminApiController {
 	
 	@RequestMapping(value = "/getOrders", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
 	@ResponseBody()
-	public String getOrders(int pageIndex,int pageSize,String status,String keyword,String orderby){
+	public String getOrders(String customerId,int pageIndex,int pageSize,String status,String keyword,String orderby){
 		short statusCode = 0;
 		if (status != null && status != "") {
 			statusCode = Short.parseShort(status);
 		}
-		PageDataModel pageDataModel = orderService.getOrders(pageIndex, pageSize, statusCode, keyword, orderby);
+		PageDataModel pageDataModel = orderService.getOrders(customerId,pageIndex, pageSize, statusCode, keyword, orderby);
 		String json = JSON.toJSONString(pageDataModel);
 		System.out.print(json);
 		return json;
@@ -311,6 +333,46 @@ public class AdminApiController {
 	@ResponseBody()
 	public String getCompleteOrder(String orderId) {
 		ResponseModel responseModel = orderService.getCompleteOrder(orderId);
+		String json = JSON.toJSONString(responseModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getCustomers", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getCustomers(String salesId,
+			int pageIndex,
+			int pageSize,
+			String keyword,
+			String orderby) {
+		PageDataModel pageDataModel = customerService.getCustomerViewModels("", pageIndex, pageSize, keyword, "");
+		String json = JSON.toJSONString(pageDataModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getCustomer", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getCustomer(String customerId){
+		ResponseModel responseModel = customerService.getCustomerModel(customerId);
+		String json = JSON.toJSONString(responseModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getSales", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getSales(String companyId,Short status,int pageIndex,int pageSize,String keyword,String orderby){
+		PageDataModel pageDataModel = salesService.getSales(companyId,status, pageIndex, pageSize, keyword,orderby);
+		String json = JSON.toJSONString(pageDataModel);
+		System.out.print(json);
+		return json;
+	}
+	
+	@RequestMapping(value = "/getSalesDetail", produces = "text/json;charset=UTF8", method = RequestMethod.POST)
+	@ResponseBody()
+	public String getSalesDetail(String salesId) {
+		ResponseModel responseModel = salesService.getSalesModel(salesId);
 		String json = JSON.toJSONString(responseModel);
 		System.out.print(json);
 		return json;

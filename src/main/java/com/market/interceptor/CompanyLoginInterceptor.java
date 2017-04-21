@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.market.utils.LoggerUtil;
 import com.market.utils.SessionKeyUtil;
 
-public class LoginInterceptor implements HandlerInterceptor {
+public class CompanyLoginInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		HttpSession session = request.getSession();
 		String companyName = (String) session.getAttribute(SessionKeyUtil.LoginCompanyName);
-		LoggerUtil.getLogger(this).error("======== Session Name ======== ： " + companyName);
+		LoggerUtil.getLogger(this).info("======== Session Name ======== ： {}", companyName);
 
 		if (companyName != null) {
 			return true;

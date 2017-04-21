@@ -77,7 +77,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">客户管理</span></a>                        
                         <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span>客户列表</a><div class="informer informer-success">+32</div></li>
+                        	<li><a href="<%=basePath%>admin/customer_list" target="framex"><span class="fa fa-magic"></span>客户列表</a><div class="informer informer-success" id="informer-newCustomerCount"></div></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -90,10 +90,8 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">销售员管理</span></a>                        
                         <ul>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 销售员列表</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 新建销售员</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 编辑销售员</a></li>
-                        	<li><a href="ui-icons.html"><span class="fa fa-magic"></span> 销售员审核</a></li>
+                        	<li><a href="<%=basePath%>admin/sales_list" target="framex"><span class="fa fa-magic"></span> 销售员列表</a></li>
+                        	<li><a href="<%=basePath%>admin/sales_apply_list" target="framex"><span class="fa fa-magic"></span> 销售员审核</a></li>
                         </ul>
                     </li>                       
                     <li class="xn-openable">

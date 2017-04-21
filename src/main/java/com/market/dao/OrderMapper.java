@@ -19,12 +19,14 @@ public interface OrderMapper {
     
     List<Order> selectInPrimaryKeys(List<String> listOrderPrimaryKeys);
     
-    List<Order> selectMany(@Param("pageIndex")int pageIndex,
+    List<Order> selectMany(@Param("customerId")String customerId,
+    		@Param("pageIndex")int pageIndex,
     		@Param("pageSize")int pageSize,
     		@Param("status")short status,
     		@Param("keyword")String keyword,
     		@Param("orderby")String orderby);
     
-    int selectManyCount(@Param("status")short status,
+    int selectManyCount(@Param("customerId")String customerId,
+    		@Param("status")short status,
     		@Param("keyword")String keyword);
 }

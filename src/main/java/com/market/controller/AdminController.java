@@ -2,6 +2,8 @@ package com.market.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,8 @@ public class AdminController {
 	@RequestMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("adminName", "Windson");
+		Logger logger = LoggerFactory.getLogger(AdminController.class);
+		logger.error("进入后台管理系统");
 		return "admin/index";
 	}
 	
@@ -165,6 +169,30 @@ public class AdminController {
 		model.addAttribute("orderId",orderId);
 		model.addAttribute("orderStatus",BasicDataUtil.getBasicDataByDomain(BasicDataUtil.Order_Status));
 		return "admin/order_edit";
+	}
+	
+	@RequestMapping("customer_list")
+	public String customerList(){
+		return "admin/customer_list";
+	}
+	
+	@RequestMapping("customer_edit")
+	public String customerEdit(String customerId,
+			Model model){
+		model.addAttribute("customerId",customerId);
+		return "admin/customer_edit";
+	}
+	
+	@RequestMapping("sales_list")
+	public String salesList() {
+		return "admin/sales_list";
+	}
+	
+	@RequestMapping("sales_edit")
+	public String salesEdit(String salesId,
+			Model model) {
+		model.addAttribute("salesId", salesId);
+		return "admin/sales_edit";
 	}
 	
 }

@@ -17,13 +17,13 @@ public interface CustomerMapper {
     
     int updateByPrimaryKey(Customer record);
     
-    List<Customer> selectBySales(@Param("salesId")String salesId,
+    List<Customer> selectMany(@Param("salesId")String salesId,
     		@Param("pageIndex")int pageIndex,
     		@Param("pageSize")int pageSize,
     		@Param("keyword")String keyword,
     		@Param("orderby")String orderby);
     
-    int selectCountBySales(@Param("salesId")String salesId,@Param("keyword")String keyword);
+    int selectManyCount(@Param("salesId")String salesId,@Param("keyword")String keyword);
     
     List<Customer> selectInPrimaryKeys(List<String> customerIds);
     

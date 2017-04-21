@@ -43,6 +43,14 @@ public class BasicDataUtil {
 	 * 公司状态-终止合作
 	 */
 	public final static int CompanyStatus_Terminate = 2;
+	/**
+	 * 佣金配置对象-公司
+	 */
+	public final static int CommisionApplicantType_Company = 1;
+	/**
+	 * 佣金配置对象-员工
+	 */
+	public final static int CommisionApplicantType_Sales = 2;
 	
 	/**
 	 * 产品性质
@@ -60,6 +68,10 @@ public class BasicDataUtil {
 	 * 订单状态
 	 */
 	public final static String Order_Status = "order_status";
+	/**
+	 * 佣金配置对象
+	 */
+	public final static String Commision_Applicant_Type = "commision_applicant_type";
 	
 	/**
 	 * 基础数据列表（内存里）

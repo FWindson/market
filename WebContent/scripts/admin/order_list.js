@@ -1,5 +1,5 @@
 $(function() {
-	var url = HOST + 'api/admin/getOrders?status=&keyword=&orderby=';
+	var url = HOST + 'api/admin/getOrders?status=&customerId=&keyword=&orderby=';
 	var method = 'POST';
 	var pagination = new AtlantPagination(url, function(response) {
 		console.log(response);

@@ -78,7 +78,7 @@ public class CompanyController {
 	public String dashboard(Model model, HttpSession session) {
 		model.addAttribute("companyId", session.getAttribute(SessionKeyUtil.LoginCompanyID));
 		model.addAttribute("companyName", session.getAttribute(SessionKeyUtil.LoginCompanyName));
-		LoggerUtil.getLogger(this).info(session.getAttribute(SessionKeyUtil.LoginCompanyName));
+		LoggerUtil.getLogger(this).debug(session.getAttribute(SessionKeyUtil.LoginCompanyName).toString());
 		System.out.println(LoggerUtil.getLogger(this).getClass().toString());
 		return "company/index";
 	}

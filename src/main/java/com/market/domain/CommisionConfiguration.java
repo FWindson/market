@@ -17,7 +17,7 @@ public class CommisionConfiguration {
 	private Boolean isDeleted;
 	private int minSales;
 	private int maxSales;
-	private short salesType;
+	private Short salesType;
 
 	public String getId() {
 		return id;
@@ -127,7 +127,7 @@ public class CommisionConfiguration {
 		return salesType;
 	}
 
-	public void setSalesType(short salesType) {
+	public void setSalesType(Short salesType) {
 		this.salesType = salesType;
 	}
 

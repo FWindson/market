@@ -115,7 +115,7 @@ public class CompanyApiController {
 			int pageSize,
 			String keyword,
 			HttpSession session) {
-		PageDataModel pageDataModel = salesService.getSales(getLoginUserID(session), pageIndex, pageSize, keyword);
+		PageDataModel pageDataModel = salesService.getSales(getLoginUserID(session),null, pageIndex, pageSize, keyword,"");
 		String json = JSON.toJSONString(pageDataModel);
 		System.out.println(json);
 		return json;
@@ -145,7 +145,7 @@ public class CompanyApiController {
 	@RequestMapping(value = "getSalesCustomers",produces = "text/json;charset=UTF8",method = RequestMethod.POST)
 	@ResponseBody()
 	public String getSalesCustomers(String salesId,int pageIndex,int pageSize,String keyword){
-		PageDataModel dataModel = customerService.getCustomersBySales(salesId, pageIndex, pageSize, keyword); 
+		PageDataModel dataModel = customerService.getCustomers(salesId, pageIndex, pageSize, keyword,""); 
 		String json = JSON.toJSONString(dataModel);
 		return json;
 	}

@@ -75,6 +75,9 @@
 		from "order" as o
 		left join customer as c on o.customer_id = c.id
 		where true 
+		<if test="customerId != null and customerId != ''">
+			and customer_id = #{customerId}::uuid 
+		</if>
 		<if test="status != 0">
 			and status = #{status}
 		</if>
@@ -97,6 +100,9 @@
 		select count(o.*) 
 		from "order" as o
 		where true
+		<if test="customerId != null and customerId != ''">
+			and customer_id = #{customerId}::uuid 
+		</if>
 		<if test="status != 0">
 			and status = #{status}
 		</if>

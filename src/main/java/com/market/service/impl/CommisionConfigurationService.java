@@ -14,9 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.market.dao.CommisionConfigurationMapper;
+import com.market.dao.SalesMapper;
 import com.market.domain.CommisionConfiguration;
+import com.market.domain.Sales;
 import com.market.requestmodel.CommisionConfigurationForm;
 import com.market.requestmodel.CommisionConfigurationFormItem;
+import com.market.utils.BasicDataUtil;
 import com.market.vo.PageDataModel;
 import com.market.vo.ResponseModel;
 
@@ -25,6 +28,8 @@ public class CommisionConfigurationService {
 
 	@Autowired
 	CommisionConfigurationMapper commisionConfigurationMapper;
+	@Autowired
+	SalesMapper salesMapper;
 
 	/**
 	 * 设置规则
@@ -78,10 +83,11 @@ public class CommisionConfigurationService {
 		return responseModel;
 	}
 
-	public PageDataModel getCommisionConfigurations(String goodsId,int targetType,String targetId,String orderby){
+	public PageDataModel getCommisionConfigurations(String goodsId,Short targetType,String targetId,String orderby){
+		PageDataModel pageDataModel = null;
 		List<CommisionConfiguration> list = commisionConfigurationMapper.selectMany(goodsId, targetType, targetId,  "");
 		int count = commisionConfigurationMapper.selectManyCount(goodsId, targetType, targetId);
-		PageDataModel pageDataModel = PageDataModel.buildSuccess(count, list);
+		pageDataModel = PageDataModel.buildSuccess(count, list);
 		return pageDataModel;
 	}
 

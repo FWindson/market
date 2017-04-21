@@ -17,11 +17,17 @@ public interface SalesMapper {
     
     int updateByPrimaryKey(Sales record);
     
-    List<Sales> selectByCompany(@Param("companyId")String companyId,
-    		@Param("pageIndex")int pageIndex,
-    		@Param("pageSize")int pageSize,
+    List<Sales> selectMany(@Param("companyId")String companyId,
+    		@Param("status")Short[] status,
+    		@Param("pageIndex")Integer pageIndex,
+    		@Param("pageSize")Integer pageSize,
+    		@Param("keyword")String keyword,
+    		@Param("orderby")String orderby);
+    
+    int selectManyCount(@Param("companyId")String companyId,
+    		@Param("status")Short[] status,
     		@Param("keyword")String keyword);
     
-    int selectCountByCompany(@Param("companyId")String companyId,
-    		@Param("keyword")String keyword);
+    List<Sales> selectInPrimaryKeys(List<String> list);
+    
 }

@@ -3,22 +3,22 @@ package com.market.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoggerUtil {
 
-	private static Map<Class,Log> loggerMap = new HashMap<Class, Log>();
+	private static Map<Class,Logger> loggerMap = new HashMap<Class, Logger>();
 	
 	/**
 	 * 获取一个日志类
 	 * @param classObject
 	 * @return
 	 */
-	public static Log getLogger(Object classObject) {
-		Log logger = loggerMap.get(classObject.getClass());
+	public static Logger getLogger(Object classObject) {
+		Logger logger = loggerMap.get(classObject.getClass());
 		if (logger == null) {
-			logger = LogFactory.getLog(classObject.getClass());
+			logger = LoggerFactory.getLogger(classObject.getClass());
 		}
 		return logger;
 	}

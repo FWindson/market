@@ -20,10 +20,11 @@ public interface CommisionRecordMapper {
     
     List<CommisionRecord> selectMany(@Param("applicantType")int applicantType,
     		@Param("applicantId")String applicantId,
-    		@Param("pageIndex")int pageIndex,
-    		@Param("pageSize")int pageSize,
+    		@Param("pageIndex")Integer pageIndex,
+    		@Param("pageSize")Integer pageSize,
     		@Param("orderby")String orderby);
     
     int selectManyCount(@Param("applicantType")int applicantType,
     		@Param("applicantId")String applicantId);
+    
 }

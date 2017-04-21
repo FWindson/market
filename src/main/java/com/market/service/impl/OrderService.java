@@ -56,8 +56,8 @@ public class OrderService {
 	 * @return
 	 */
 	// TODO:根据customer_id
-	public PageDataModel getOrders(int pageIndex,int pageSize,short status,String keyword,String orderby){
-		List<Order> listOrder = orderMapper.selectMany(pageIndex, pageSize, status, keyword, orderby);
+	public PageDataModel getOrders(String customerId,int pageIndex,int pageSize,short status,String keyword,String orderby){
+		List<Order> listOrder = orderMapper.selectMany(customerId,pageIndex, pageSize, status, keyword, orderby);
 		List<String> customerIds = new LinqArrayList<String>();
 		List<OrderModel> listOrderModel = new LinqArrayList<OrderModel>();
 		for(Order o : listOrder) {
@@ -80,7 +80,7 @@ public class OrderService {
 			orderModel.setCustomerName(customer.getName());
 			listOrderModel.add(orderModel);
 		}
-		int count = orderMapper.selectManyCount(status, keyword);
+		int count = orderMapper.selectManyCount(customerId,status, keyword);
 		PageDataModel pageDataModel = PageDataModel.buildSuccess(count, listOrderModel);
 		return pageDataModel;
 	}

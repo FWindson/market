@@ -1,14 +1,15 @@
-package com.market.domain;
+package com.market.vo;
 
 import java.util.Date;
 
-public class Customer {
+public class CustomerViewModel {
 
 	private String id;
 	private String name;
 	private Object userId;
 	private Date createTime;
 	private String salesId;
+	private String salesName;
 	private Date setSalesTime;
 
 	public String getId() {
@@ -49,6 +50,14 @@ public class Customer {
 
 	public void setSalesId(String salesId) {
 		this.salesId = salesId;
+	}
+
+	public String getSalesName() {
+		return salesName;
+	}
+
+	public void setSalesName(String salesName) {
+		this.salesName = salesName;
 	}
 
 	public Date getSetSalesTime() {

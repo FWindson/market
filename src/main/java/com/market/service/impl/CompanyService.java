@@ -15,6 +15,7 @@ import com.market.domain.CommisionConfiguration;
 import com.market.domain.Company;
 import com.market.service.ICompanyService;
 import com.market.utils.BasicDataUtil;
+import com.market.vo.CompanyModel;
 import com.market.vo.PageDataModel;
 import com.market.vo.ResponseModel;
 
@@ -35,8 +36,24 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Company getByPrimaryKey(String id) {
-		return companyMapper.selectByPrimaryKey(id);
+	public CompanyModel getByPrimaryKey(String id) {
+		CompanyModel companyModel = new CompanyModel();
+		Company company = companyMapper.selectByPrimaryKey(id);
+		if (company == null) {
+			companyModel = null;
+		}
+		else {
+			companyModel.setId(company.getId());
+			companyModel.setName(company.getName());
+			companyModel.setStatus(company.getStatus());
+			companyModel.setFund(company.getFund());
+			companyModel.setFreezedFund(company.getFreezedFund());
+			companyModel.setCreateTime(company.getCreateTime());
+			companyModel.setCreateBy(company.getCreateBy());
+			companyModel.setUpdateTime(company.getUpdateTime());
+			companyModel.setUpdateBy(company.getUpdateBy());
+		}
+		return companyModel;
 	}
 
 	@Override

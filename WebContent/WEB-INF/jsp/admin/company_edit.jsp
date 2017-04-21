@@ -46,8 +46,7 @@
 								<input type="password" class="form-control" name="password" autocomplete="off">
 							</div>
 							<div class="col-md-5">
-								<label class="check">
-									<input type="checkbox" class="icheckbox" id="checkbox-resetPassword">重置密码？
+								<label class="check"> <input type="checkbox" class="icheckbox" id="checkbox-resetPassword">重置密码？
 								</label>
 							</div>
 						</div>
@@ -62,101 +61,176 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">商品</h3>
-				</div>
-				<div class="panel-body">
-					<!-- 商品列表 -->
-					<div class="list-group border-bottom" id="list-goods"></div>
+	<div class="page-tabs">
+		<a href="#first-tab" class="active">公司佣金配置</a> 
+		<a href="#second-tab">员工佣金配置</a>
+	</div>
+	<!-- 公司配置页 开始 -->
+	<div class="page-content-wrap page-tabs-item active" id="first-tab">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">商品</h3>
+					</div>
+					<div class="panel-body">
+						<!-- 商品列表 -->
+						<div class="list-group border-bottom" id="list-goods"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">佣金配置</h3>
-					<ul class="panel-controls">
-						<li><div class="btn btn-default" id="btn-add-straight" style="margin-right:8px;">
-								添加<strong>直接</strong>售出配置
-							</div></li>
-						<li><div class="btn btn-default" id="btn-add-bySales">
-								添加<strong>员工</strong>售出配置
-							</div></li>
-					</ul>
-				</div>
-				<div class="panel-body" id="panel-commision-configuration">
-					<div class="panel-body template-configuration template-configuration-straight" id="template-configuration-straight" style="display: none;">
-						<table class="table table-bordered table-striped table-actions">
-							<thead>
-								<tr>
-									<th>售出方式</th>
-									<th>值</th>
-									<th>结算类型</th>
-									<th>最小值</th>
-									<th>最大值</th>
-									<th>操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td width="100">直接售出<input class="form-control" type="hidden" name="id"></td>
-									<td><input class="form-control" type="number" name="number" value="0"></td>
-									<td width="100">
-										<select class="form-control" name="calculateType">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">佣金配置</h3>
+						<ul class="panel-controls">
+							<li><div class="btn btn-default" id="btn-add-straight" style="margin-right: 8px;">
+									添加<strong>直接</strong>售出配置
+								</div></li>
+							<li><div class="btn btn-default" id="btn-add-bySales">
+									添加<strong>员工</strong>售出配置
+								</div></li>
+						</ul>
+					</div>
+					<!-- 公司配置-模板页容器 开始 -->
+					<div class="panel-body" id="panel-commision-configuration">
+						<!-- 公司配置-模板页 开始 -->
+						<div class="panel-body template-configuration template-configuration-straight" id="template-configuration-straight" style="display: none;">
+							<table class="table table-bordered table-striped table-actions">
+								<thead>
+									<tr>
+										<th>售出方式</th>
+										<th>值</th>
+										<th>结算类型</th>
+										<th>最小值</th>
+										<th>最大值</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td width="100">直接售出<input class="form-control" type="hidden" name="id"></td>
+										<td><input class="form-control" type="number" name="number" value="0"></td>
+										<td width="100"><select class="form-control" name="calculateType">
 												<option value="1">百分比</option>
 												<option value="2">固定值</option>
-										</select>
-									</td>
-									<td><input class="form-control" type="number" name="minSales" value="0"></td>
-									<td><input class="form-control" type="number" name="maxSales" value="0"></td>
-									<td><div class="btn btn-danger">删除</div></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="panel-body template-configuration template-configuration-bySales" id="template-configuration-bySales" style="display: none;">
-						<table class="table table-bordered table-striped table-actions">
-							<thead>
-								<tr>
-									<th>售出方式</th>
-									<th>值</th>
-									<th>结算类型</th>
-									<th>最小值</th>
-									<th>最大值</th>
-									<th>操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td width="100">员工售出<input class="form-control" type="hidden" name="id"></td>
-									<td><input class="form-control" type="number" name="number" value="0"></td>
-									<td width="100">
-										<select class="form-control" name="calculateType">
-											<option value="1">百分比</option>
-											<option value="2">固定值</option>
-										</select>
-									</td>
-									<td><input class="form-control" type="number" name="minSales" value="0"></td>
-									<td><input class="form-control" type="number" name="maxSales" value="0"></td>
-									<td><div class="btn btn-danger">删除</div></td>
-								</tr>
-							</tbody>
-						</table>
+										</select></td>
+										<td><input class="form-control" type="number" name="minSales" value="0"></td>
+										<td><input class="form-control" type="number" name="maxSales" value="0"></td>
+										<td><div class="btn btn-danger">删除</div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-body template-configuration template-configuration-bySales" id="template-configuration-bySales" style="display: none;">
+							<table class="table table-bordered table-striped table-actions">
+								<thead>
+									<tr>
+										<th>售出方式</th>
+										<th>值</th>
+										<th>结算类型</th>
+										<th>最小值</th>
+										<th>最大值</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td width="100">员工售出<input class="form-control" type="hidden" name="id"></td>
+										<td><input class="form-control" type="number" name="number" value="0"></td>
+										<td width="100"><select class="form-control" name="calculateType">
+												<option value="1">百分比</option>
+												<option value="2">固定值</option>
+										</select></td>
+										<td><input class="form-control" type="number" name="minSales" value="0"></td>
+										<td><input class="form-control" type="number" name="maxSales" value="0"></td>
+										<td><div class="btn btn-danger">删除</div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 公司配置-模板页 结束 -->
 						<h3 class="text-center none-configuration-tip">暂无配置</h3>
 					</div>
-				</div>
-				<div class="panel-footer">
-					<button class="btn btn-warning btn-lg pull-right" id="btn-save-commisionConfiguration">
-						保存佣金配置 <span class="fa fa-floppy-o fa-right"></span>
-					</button>
+					<!-- 公司配置-模板页容器 结束 -->
+					<div class="panel-footer">
+						<button class="btn btn-warning btn-lg pull-right" id="btn-save-commisionConfiguration">
+							保存佣金配置 <span class="fa fa-floppy-o fa-right"></span>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<!-- 公司配置页 结束 -->
+	<!-- 员工配置页 开始 -->
+	<div class="page-content-wrap page-tabs-item" id="second-tab">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">商品</h3>
+					</div>
+					<div class="panel-body">
+						<!-- 商品列表 -->
+						<div class="list-group border-bottom" id="sales-list-goods"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">佣金配置</h3>
+						<ul class="panel-controls">
+							<li>
+								<div class="btn btn-default" id="sales_btn-add-configuration">添加配置</div>
+							</li>
+						</ul>
+					</div>
+					<!-- 员工配置-模板页容器 开始 -->
+					<div class="panel-body" id="panel-commision-salesConfiguration">
+						<!-- 员工配置-模板页 开始 -->
+						<div class="panel-body sales_template-configuration" id="sales_template-configuration" style="display: none;">
+							<table class="table table-bordered table-striped table-actions">
+								<thead>
+									<tr>
+										<th>售出方式</th>
+										<th>值</th>
+										<th>结算类型</th>
+										<th>最小值</th>
+										<th>最大值</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td width="100">直接售出<input class="form-control" type="hidden" name="id"></td>
+										<td><input class="form-control" type="number" name="number" value="0"></td>
+										<td width="100"><select class="form-control" name="calculateType">
+												<option value="1">百分比</option>
+												<option value="2">固定值</option>
+										</select></td>
+										<td><input class="form-control" type="number" name="minSales" value="0"></td>
+										<td><input class="form-control" type="number" name="maxSales" value="0"></td>
+										<td><div class="btn btn-danger">删除</div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 员工配置-模板页 结束 -->
+						<h3 class="text-center none-configuration-tip">暂无配置</h3>
+					</div>
+					<!-- 员工配置-模板页容器 结束 -->
+					<div class="panel-footer">
+						<button class="btn btn-warning btn-lg pull-right" id="sales_btn-save-commisionConfiguration">
+							保存佣金配置 <span class="fa fa-floppy-o fa-right"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 员工配置页 结束 -->
 
 	<!-- 提示框 -->
 	<div class="message-box message-box-success animated fadeIn" id="message-box-success">
@@ -196,21 +270,21 @@
 				</div>
 				<div class="mb-footer">
 					<button class="btn btn-default btn-lg pull-right mb-control-close">取消</button>
-					<button class="btn btn-warning btn-lg pull-right" id="btn-removeConfiguration" style="margin-right:12px;">确定</button>
+					<button class="btn btn-warning btn-lg pull-right" id="btn-removeConfiguration" style="margin-right: 12px;">确定</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 删除配置确认对话框 结束 -->
-	
+
 	<%-- <script type="text/javascript" src="<%=basePath%>jslib/jquery/jquery-3.2.0.js"></script>  --%>
 
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins/bootstrap/bootstrap-select.js"></script>
-	<script type='text/javascript' src='<%=basePath%>jslib/atlant/plugins/icheck/icheck.min.js'></script>   
-	
+	<script type='text/javascript' src='<%=basePath%>jslib/atlant/plugins/icheck/icheck.min.js'></script>
+
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/plugins.js"></script>
 	<script type="text/javascript" src="<%=basePath%>jslib/atlant/actions.js"></script>
 

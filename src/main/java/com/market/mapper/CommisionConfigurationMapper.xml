@@ -26,22 +26,33 @@
 	</delete>
 	<insert id="insert" parameterType="com.market.domain.CommisionConfiguration">
 		insert into
-		commision_configuration (id, target_type, target_id,
-		calculate_type,
-		calculate_value, goods_id,
-		create_time, create_by, update_time,
-		update_by, is_deleted, min_sales,
-		max_sales, sales_type)
-		values
-		(#{id,jdbcType=VARCHAR}::uuid, #{targetType,jdbcType=SMALLINT},
-		#{targetId,jdbcType=VARCHAR}::uuid,
-		#{calculateType,jdbcType=SMALLINT}, #{calculateValue,jdbcType=DOUBLE},
-		#{goodsId,jdbcType=OTHER}::uuid,
-		#{createTime,jdbcType=TIMESTAMP},
-		#{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
-		#{updateBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT},
-		#{minSales,jdbcType=INTEGER},
-		#{maxSales,jdbcType=INTEGER},#{salesType,jdbcType=SMALLINT})
+		commision_configuration (
+			id, 
+			target_type, 
+			target_id,
+			calculate_type,
+			calculate_value, goods_id,
+			create_time, create_by, update_time,
+			update_by, is_deleted, min_sales,
+			max_sales, 
+			sales_type
+		)
+		values (
+			#{id,jdbcType=VARCHAR}::uuid, 
+			#{targetType,jdbcType=SMALLINT},
+			#{targetId,jdbcType=VARCHAR}::uuid,
+			#{calculateType,jdbcType=SMALLINT}, 
+			#{calculateValue,jdbcType=DOUBLE},
+			#{goodsId,jdbcType=OTHER}::uuid,
+			#{createTime,jdbcType=TIMESTAMP},
+			#{createBy,jdbcType=VARCHAR}, 
+			#{updateTime,jdbcType=TIMESTAMP},
+			#{updateBy,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=BIT},
+			#{minSales,jdbcType=INTEGER},
+			#{maxSales,jdbcType=INTEGER},
+			#{salesType,jdbcType=SMALLINT}
+		)
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.market.domain.CommisionConfiguration">
 		update

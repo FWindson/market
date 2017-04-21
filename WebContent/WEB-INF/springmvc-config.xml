@@ -62,7 +62,11 @@
 			<mvc:exclude-mapping path="/jslib/**" />
 			<mvc:exclude-mapping path="/styles/**" />
 			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
-			<bean class="com.market.interceptor.LoginInterceptor" />
+			<bean class="com.market.interceptor.CompanyLoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/api/admin/**" />
+			<bean class="com.market.interceptor.AdminApiAuthInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

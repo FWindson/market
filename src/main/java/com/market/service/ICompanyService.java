@@ -3,6 +3,7 @@ package com.market.service;
 import java.util.List;
 
 import com.market.domain.Company;
+import com.market.vo.CompanyModel;
 import com.market.vo.PageDataModel;
 import com.market.vo.ResponseModel;
 
@@ -26,7 +27,7 @@ public interface ICompanyService {
 	 * 获取公司
 	 * @return 主键
 	 */
-	public Company getByPrimaryKey(String id);
+	public CompanyModel getByPrimaryKey(String id);
 	
 	/**
 	 * 获取公司列表

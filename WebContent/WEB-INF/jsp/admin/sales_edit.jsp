@@ -18,93 +18,93 @@
 
 	<!-- START 当前路径 -->
 	<ul class="breadcrumb">
-		<li><a href="#">订单管理</a></li>
-		<li class="active">订单详情</li>
+		<li><a href="#">客户管理</a></li>
+		<li class="active">客户详情</li>
 	</ul>
 	<!-- END 当前路径 -->
 	<div class="col-md-12">
 		<div class="page-title">
 			<h2>订单详情</h2>
 		</div>
-		<div class="col-md-12">
-			<form class="form-horizontal" role="form">
-				<input type="hidden" name="id" value="${orderId}" id="input-orderId">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">订单号：</h4>
-							<div class="col-md-8">
-								<h3 class="form-control-static" id="order-code"></h3>
+		<div class="row">
+			<div class="col-md-8">
+				<form class="form-horizontal" role="form">
+					<input type="hidden" name="id" value="${salesId}" id="input-salesId">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">姓名：</h4>
+								<div class="col-md-8">
+									<h3 class="form-control-static" id="sales-name"></h3>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">状态：</h4>
-							<div class="col-md-2">
-								<h3 class="form-control-static" id="order-status"></h3>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">手机号：</h4>
+								<div class="col-md-2">
+									<h3 class="form-control-static" id="sales-mobileNumber"></h3>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">客户：</h4>
-							<div class="col-md-4">
-								<h3 class="form-control-static" id="order-customer"></h3>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">状态：</h4>
+								<div class="col-md-2">
+									<h3 class="form-control-static" id="sales-status"></h3>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">订单实付：</h4>
-							<div class="col-md-4">
-								<h3 class="form-control-static" id="order-totalPrice"></h3>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">所属公司：</h4>
+								<div class="col-md-4">
+									<h3 class="form-control-static" id="sales-companyName"></h3>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">订单原价：</h4>
-							<div class="col-md-4">
-								<h3 class="form-control-static" id="order-oldPrice"></h3>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">可用佣金：</h4>
+								<div class="col-md-4">
+									<h3 class="form-control-static" id="sales-commision"></h3>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<h4 class="col-md-1 text-right control-label">下单时间：</h4>
-							<div class="col-md-4">
-								<h3 class="form-control-static" id="order-createTime"></h3>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">冻结佣金：</h4>
+								<div class="col-md-4">
+									<h3 class="form-control-static" id="sales-freezeCommision"></h3>
+								</div>
+							</div>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">历史总佣金：</h4>
+								<div class="col-md-4">
+									<h3 class="form-control-static" id="sales-totalCommision"></h3>
+								</div>
+							</div>
+							<div class="form-group">
+								<h4 class="col-md-2 text-right control-label">创建时间：</h4>
+								<div class="col-md-4">
+									<h3 class="form-control-static" id="sales-createTime"></h3>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</form>
-		</div>
-		<div class="col-md-4" id="row-orderInfluence" style="display:none;">
-			<div class="panel panel-default">
-				<div class="panel-body panel-body-table">
-					<div class="table-responsive">
-						<table class="table table-bordered table-striped table-actions">
-							<thead>
-								<tr>
-									<th>折扣类型</th>
-									<th>折扣价格</th>
-								</tr>
-							</thead>
-							<tbody id="table-influence-body"></tbody>
-						</table>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body panel-body-table">
-					<div class="table-responsive">
-						<table class="table table-bordered table-striped table-actions">
-							<thead>
-								<tr>
-									<th>商品名</th>
-									<th>单价</th>
-									<th>数量</th>
-									<th>原总价</th>
-									<th>实付总价</th>
-								</tr>
-							</thead>
-							<tbody id="table-orderDetail-body"></tbody>
-						</table>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">拥有客户</div>
 					</div>
+					<div class="panel-body panel-body-table">
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped table-actions">
+								<thead>
+									<tr>
+										<th>客户名</th>
+										<th>归属时间</th>
+									</tr>
+								</thead>
+								<tbody id="table-body"></tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-footer" id="table-footer"></div>
 				</div>
 			</div>
 		</div>
@@ -161,7 +161,8 @@
 	<script type="text/javascript" src="<%=basePath%>scripts/global/config.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.basic-data.js"></script>
 	<script type="text/javascript" src="<%=basePath%>scripts/global/global.function.js"></script>
-	<script type="text/javascript" src="<%=basePath%>scripts/admin/order_edit.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/global/AtlantPagination.js"></script>
+	<script type="text/javascript" src="<%=basePath%>scripts/admin/sales_edit.js"></script>
 
 </body>
 </html>
