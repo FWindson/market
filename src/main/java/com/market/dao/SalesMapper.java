@@ -43,4 +43,6 @@ public interface SalesMapper {
      * @mbg.generated Mon Mar 27 01:56:44 CST 2017
      */
     int updateByPrimaryKey(Sales record);
+    
+    public List<Sales> selectSalesByCompanyId(String companyId);
 }

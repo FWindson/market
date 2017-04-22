@@ -69,4 +69,10 @@
     select id, code, status, total_price, customer_id, create_time
     from order
   </select>
+    <select id="selectOrderByCustomerId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, code, status, total_price, customer_id, create_time
+    from order
+    where customer_id = #{customer_id,jdbcType=VARCHAR}::uuid
+  </select>
+  
 </mapper>

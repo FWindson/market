@@ -79,4 +79,11 @@
     image_id
     from order_detail
   </select>
+  
+    <select id="selectOrderDetailByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, order_id, goods_id, price, quantity, total_price, original_price, goods_name, 
+    image_id
+    from order_detail
+    where order_id = #{order_id,jdbcType=VARCHAR}::uuid
+  </select>
 </mapper>

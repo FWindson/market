@@ -79,4 +79,11 @@
     status, create_time
     from sales
   </select>
+  
+   <select id="selectSalesByCompanyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, name, user_id, company_id, mobile_number, commision, freezed_commision, 
+    status, create_time
+    from sales
+    where company_id = #{company_id,jdbcType=VARCHAR}::uuid
+  </select>
 </mapper>

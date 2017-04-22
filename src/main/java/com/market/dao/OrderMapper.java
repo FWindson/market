@@ -2,6 +2,8 @@ package com.market.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.market.domain.Order;
 
 public interface OrderMapper {
@@ -45,5 +47,7 @@ public interface OrderMapper {
      */
     int updateByPrimaryKey(Order record);
     
-    Order getOrderByCustomerId(String Id);
+    List<Order> selectOrderByCustomerId(@Param("customerId")String customerId);
+    
+ 
 }

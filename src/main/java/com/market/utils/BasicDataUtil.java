@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.market.domain.BasicData;
 import com.market.service.IBasicDatatService;
 import com.market.service.impl.BasicDataService;
@@ -72,5 +74,13 @@ public class BasicDataUtil {
 			}
 		}
 		return listByDomain;
+	}
+	
+	public static String getCustomerUserID(HttpSession session){
+		Object userId = session.getAttribute(SessionKeyUtil.UserId);
+		if (userId != null) 
+			return userId.toString();
+		else 
+			return "96261b4c-1fb9-4558-b03b-5ce755bea2aa";
 	}
 }
