@@ -86,8 +86,16 @@ public class StoreController {
 		String userId=BasicDataUtil.getCustomerUserID(session);
 		double simPrice=promoCodeCalcService.calculate(discountCode, userId, goodsId,goods.getPrice(),count);
 		
-		return "weChatStore/goodsDetail";
+		return "weChatStore/placeOrder";
 	}
 	
+	@RequestMapping(value = "/customerOrders")
+	public String customerOrders(String companyId, String salesId, String discountCode, String goodsId, double count,HttpSession session) {
+		Goods goods = storeService.getGoods(goodsId);
+		String userId=BasicDataUtil.getCustomerUserID(session);
+		double simPrice=promoCodeCalcService.calculate(discountCode, userId, goodsId,goods.getPrice(),count);
+		
+		return "weChatStore/customer_order_list";
+	}
 
 }

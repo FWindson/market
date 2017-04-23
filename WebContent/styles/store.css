@@ -1,0 +1,17 @@
+.boxs{
+	margin:0 auto; 
+    overflow:hidden
+ } 
+.box-left{
+	float:left;
+	width:250px; 
+	text-align:right
+	} 
+.box-right{ 
+    float:right; 
+ 	width:250px;  
+	text-align:left
+	} 
+.imgbox{
+	width:400px
+	} 	
