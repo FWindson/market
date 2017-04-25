@@ -12,6 +12,8 @@ public interface GoodsImageRelationMapper {
     int insert(GoodsImageRelation record);
 
     GoodsImageRelation selectByPrimaryKey(String id);
+    
+    GoodsImageRelation selectByGoodsId(@Param("goodsId")String goods_id);
 
     List<GoodsImageRelation> selectAll();
 

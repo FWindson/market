@@ -33,7 +33,7 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="org.postgresql.Driver" />
 				<property name="url"
-					value="jdbc:postgresql://127.0.0.1:5432/LutuMarket?charSet=utf-8" />
+					value="jdbc:postgresql://localhost:5432/LutuMarket?charSet=utf-8" />
 				<property name="username" value="postgres" />
 				<property name="password" value="lol123456" />
 			</dataSource>
