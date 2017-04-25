@@ -16,7 +16,7 @@ public interface CustomerMapper {
     List<Customer> selectAll();
     
     int updateByPrimaryKey(Customer record);
-    
+
     List<Customer> selectMany(@Param("salesId")String salesId,
     		@Param("pageIndex")int pageIndex,
     		@Param("pageSize")int pageSize,
@@ -26,5 +26,6 @@ public interface CustomerMapper {
     int selectManyCount(@Param("salesId")String salesId,@Param("keyword")String keyword);
     
     List<Customer> selectInPrimaryKeys(List<String> customerIds);
-    
+
+    Customer selectByUserId(@Param("userId")String userId);
 }

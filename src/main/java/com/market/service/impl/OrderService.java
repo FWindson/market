@@ -1,5 +1,6 @@
 package com.market.service.impl;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +15,12 @@ import com.market.dao.OrderDetailMapper;
 import com.market.dao.OrderInfluenceMapper;
 import com.market.dao.OrderMapper;
 import com.market.domain.Customer;
-import com.market.domain.Goods;
 import com.market.domain.GoodsImageRelation;
 import com.market.domain.Image;
 import com.market.domain.Order;
 import com.market.domain.OrderDetail;
 import com.market.domain.OrderInfluence;
 import com.market.java.extendsion.LinqArrayList;
-import com.market.java.extendsion.Predicate;
 import com.market.vo.OrderCompleteModel;
 import com.market.vo.OrderDetailModel;
 import com.market.vo.OrderModel;
@@ -132,4 +131,15 @@ public class OrderService {
 		return ResponseModel.buildSuccess(orderCompleteModel);
 	}
 	
+	public List<Order> getOrderByCustomerId(String customerId) {
+		List<Order> orders =orderMapper.selectOrderByCustomerId(customerId);
+		return orders;
+	}
+
+	
+	public OrderDetail getOrderDetailByOrderId(String orderId) {
+		OrderDetail orderDetail=orderDetailMapper.selectOrderDetailByOrderId(orderId);
+		return orderDetail;
+	}
+
 }

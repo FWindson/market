@@ -14,8 +14,10 @@ public interface OrderDetailMapper {
     List<OrderDetail> selectAll();
 
     int updateByPrimaryKey(OrderDetail record);
-    
+
     List<OrderDetail> selectInPrimaryKeys(List<String> listPrimaryKeys);
     
     List<OrderDetail> selectByOrderId(String orderId);
+
+    OrderDetail selectOrderDetailByOrderId(String orderId);
 }

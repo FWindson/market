@@ -29,8 +29,13 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, goods_id, image_id, create_time, is_deleted
     from goods_image_relation
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}::uuid
   </select>
+<!--     <select id="selectByGoodsId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, goods_id, image_id, create_time, is_deleted
+    from goods_image_relation
+    where goods_id = #{goods_id,jdbcType=VARCHAR}::uuid
+  </select> -->
   <select id="selectAll" resultMap="BaseResultMap">
     select id, goods_id, image_id, create_time, is_deleted
     from goods_image_relation

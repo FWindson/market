@@ -23,8 +23,9 @@
 	<mvc:resources mapping="/jslib/**" location="/jslib/" />
 	<mvc:resources mapping="/uploads/**" location="/uploads/" />
 	<mvc:resources mapping="/*.html" location="/" />
-
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
