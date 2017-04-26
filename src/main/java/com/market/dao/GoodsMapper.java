@@ -17,8 +17,8 @@ public interface GoodsMapper {
 
     int updateByPrimaryKey(Goods record);
      
-    List<Goods> selectMany(@Param("pageIndex")int pageIndex,
-    		@Param("pageSize")int pageSize,
+    List<Goods> selectMany(@Param("pageIndex")Integer pageIndex,
+    		@Param("pageSize")Integer pageSize,
     		@Param("keyword")String keyword,
     		@Param("orderby")String orderby);
 

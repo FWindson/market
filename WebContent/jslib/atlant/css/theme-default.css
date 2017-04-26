@@ -8624,13 +8624,13 @@ li.ext_zip {
   .page-container .page-sidebar {
     position: relative;
     float: left;
-    width: 100%;
+    width: 220px;
   }
   .page-container .page-sidebar.scroll {
     position: relative;
   }
   .page-container .page-content {
-    margin-left: 0px;
+    /* margin-left: 0px; */
   }
   .page-container .page-content .content-frame .content-frame-left,
   .page-container .page-content .content-frame .content-frame-right {
@@ -8694,7 +8694,7 @@ li.ext_zip {
     display: block;
   }
   .x-navigation .x-navigation-control {
-    display: block;
+    /* display: block; */
   }
   .x-navigation-minimize {
     display: none !important;

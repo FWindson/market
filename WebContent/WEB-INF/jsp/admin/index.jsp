@@ -25,7 +25,7 @@
             <!-- 目录栏 -->
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
-                <ul class="x-navigation">
+                <ul class="x-navigation x-navigation-open">
                     <li class="xn-logo">
                         <a href="index.html">ATLANT</a>
                         <a href="#" class="x-navigation-control"></a>

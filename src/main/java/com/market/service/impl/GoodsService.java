@@ -17,11 +17,13 @@ import com.market.domain.Goods;
 import com.market.domain.GoodsImageRelation;
 import com.market.domain.GoodsProductRelation;
 import com.market.domain.Image;
+import com.market.java.extendsion.LinqArrayList;
 import com.market.requestmodel.GoodsForm;
 import com.market.requestmodel.GoodsFormProduct;
 import com.market.service.IGoodsService;
 import com.market.utils.LoggerUtil;
 import com.market.vo.GoodsEditModel;
+import com.market.vo.GoodsOfSalesGoodsShelfVO;
 import com.market.vo.PageDataModel;
 import com.market.vo.ProductOfGoodsEditModel;
 import com.market.vo.ResponseModel;
@@ -161,6 +163,28 @@ public class GoodsService implements IGoodsService{
 			responseModel = ResponseModel.buildFailed(e.getMessage());
 		}
 		return responseModel;
+	}
+	
+	@Override
+	public PageDataModel getGoodsShelf(Integer pageIndex,Integer pageSize,String keyword,String orderby) {
+		List<GoodsOfSalesGoodsShelfVO> list = new ArrayList<GoodsOfSalesGoodsShelfVO>();
+		List<Goods> listGoods = goodsMapper.selectMany(pageIndex, pageSize, keyword, orderby);
+		int count = goodsMapper.selectManyCount(keyword);
+		for(Goods goods : listGoods) {
+			GoodsOfSalesGoodsShelfVO vo = new GoodsOfSalesGoodsShelfVO();
+			vo.id = goods.getId();
+			vo.name = goods.getName();
+			vo.price = goods.getPrice();
+			vo.createTime = goods.getCreateTime();
+			List<GoodsImageRelation> listGoodsImageRelation = goodsImageRelationMapper.selectMany(goods.getId(), "");
+			if (listGoodsImageRelation.size() > 0) {
+				Image image = imageMapper.selectByPrimaryKey(listGoodsImageRelation.get(0).getImageId());
+				vo.imageUrl = image.getRelativePath();
+			}
+			list.add(vo);
+		}
+		PageDataModel dataModel = PageDataModel.buildSuccess(count, list);
+		return dataModel;
 	}
 	
 }

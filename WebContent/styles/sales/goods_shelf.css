@@ -1,0 +1,51 @@
+#gs-body {
+	margin:8px 8px;
+}
+.gs-g-i {
+	width:100%;
+	padding:12 8px;
+	margin-bottom:12px;
+	border:1px solid #eeeeee;
+	box-shadow: 0 0px 4px 1px rgba(116,116,116,0.2)
+}
+.gs-g-i-img {
+	width:100%;
+	height:172px;
+	overflow:hidden;
+	
+}
+.gs-g-i-img img{
+	width:100%;
+}
+.gs-g-i-name {
+	padding:5px 8px;
+	font-size:16px;
+}
+.gs-g-i-price {
+	padding:5px 8px 8px 8px;
+	font-size:16px;
+}
+.gs-g-i-btn {
+	height:42px;
+	width:100%;
+}
+.gs-g-i-btn-qrcode {
+	width:50%;
+	float:left;
+	height:100%;
+	color:white;
+	background-color:#5eb95e;
+	border-color: #5eb95e;
+	text-align:center;
+	line-height:42px;
+}
+.gs-g-i-btn-detail {
+	width:50%;
+	float:left;
+	height:100%;
+	color:white;
+	background-color:#3bb4f2;
+	text-align:center;
+	line-height:42px;
+    border-color: #3bb4f2;
+}

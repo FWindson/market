@@ -24,4 +24,6 @@ public interface IGoodsService {
 	
 	ResponseModel getGoodsEditModel(String goodsId);
 	
+	PageDataModel getGoodsShelf(Integer pageIndex,Integer pageSize,String keyword,String orderby);
+	
 }

@@ -59,7 +59,7 @@
   <select id="selectMany" resultMap="BaseResultMap">
   	select * from goods 
   	where is_deleted != true
-  	<if test="keyword != null or keyword != ''">
+  	<if test="keyword != null and keyword != ''">
   		and name like CONCAT('%',#{keyword},'%') 
   	</if>
   	<choose>
