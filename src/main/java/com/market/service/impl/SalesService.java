@@ -1,6 +1,5 @@
 package com.market.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,7 @@ import com.market.dao.SalesMapper;
 import com.market.dao.UserMapper;
 import com.market.domain.CommisionRecord;
 import com.market.domain.Company;
-import com.market.domain.Customer;
 import com.market.domain.Sales;
-import com.market.domain.SalesApply;
-import com.market.domain.User;
 import com.market.java.extendsion.LinqArrayList;
 import com.market.utils.BasicDataUtil;
 import com.market.utils.LoggerUtil;
@@ -120,5 +116,11 @@ public class SalesService {
 		}
 		return responseModel;
 	}
+	
+	public List<Sales> getAllSales(String companyId){
+		List<Sales> list=salesMapper.selectSalesByCompanyId(companyId);
+		return list;
 
+
+}
 }

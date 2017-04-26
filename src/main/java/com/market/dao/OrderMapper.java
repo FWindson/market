@@ -1,9 +1,10 @@
 package com.market.dao;
 
-import com.market.domain.Order;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import com.market.domain.Order;
 
 public interface OrderMapper {
 
@@ -29,4 +30,8 @@ public interface OrderMapper {
     int selectManyCount(@Param("customerId")String customerId,
     		@Param("status")short status,
     		@Param("keyword")String keyword);
+
+    List<Order> selectOrderByCustomerId(@Param("customerId")String customerId);
+    
+ 
 }

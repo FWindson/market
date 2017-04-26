@@ -20,4 +20,11 @@ public class SessionKeyUtil {
 	 */
 	public final static String LoginCompanyName = "LoginCompanyName";
 	
+	/**
+	 * 客戶id
+	 */
+	public final static String UserId= "UserId";
+	
+	
+	
 }

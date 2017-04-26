@@ -1,12 +1,16 @@
 package com.market.service.impl;
 
+
 import java.util.ArrayList;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.market.dao.CustomerMapper;
+
 import com.market.dao.SalesMapper;
 import com.market.domain.Customer;
 import com.market.domain.Sales;
@@ -70,6 +74,5 @@ public class CustomerService {
 		ResponseModel responseModel = ResponseModel.buildSuccess(customerViewModel);
 		return responseModel;
 	}
-	
 	
 }

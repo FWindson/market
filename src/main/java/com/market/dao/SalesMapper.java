@@ -29,5 +29,7 @@ public interface SalesMapper {
     		@Param("keyword")String keyword);
     
     List<Sales> selectInPrimaryKeys(List<String> list);
-    
+
+    public List<Sales> selectSalesByCompanyId(String companyId);
+
 }
